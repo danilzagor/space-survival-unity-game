@@ -18,7 +18,6 @@ public class OnBaseScript : MonoBehaviour
         if (other == player.boxCollider) //Checking what object triggered the collider and if it is player, changing bool
         {
             player.PlayerIsAtBase = false;
-            Debug.Log("");
         }
     }
 }
