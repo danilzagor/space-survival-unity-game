@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class player : MonoBehaviour
 {
+   
+    
     public static bool PlayerIsAtBase;
     public static CapsuleCollider2D boxCollider;
     public Joystick joystick;
@@ -19,7 +21,7 @@ public class player : MonoBehaviour
     [SerializeField] private Text hptext;
     [SerializeField] private Text oxygentext;
     [SerializeField] private TrailRenderer traileffect;
-    void Start()
+    void Start() 
     {
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
