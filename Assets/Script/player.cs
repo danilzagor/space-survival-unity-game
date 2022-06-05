@@ -6,36 +6,47 @@ using UnityEngine.UI;
 
 
 public class player : MonoBehaviour
-{
-   
-    
+{  
     public static bool PlayerIsAtBase;
     public static CapsuleCollider2D boxCollider;
     public Joystick joystick;
+    public Joystick InteractJoystick;
     private Vector3 moveDelta;
     private RaycastHit2D hit;
     private SpriteRenderer sprite;
     [SerializeField] private Sprite[] playeranimationsprites = new Sprite[3];
-    [SerializeField] private int PlayerHealth;
-    [SerializeField] private int PlayerOxygen;
+    [SerializeField] public static int PlayerHealth=100;
+    [SerializeField] public static int PlayerOxygen=100;
     [SerializeField] private Text hptext;
     [SerializeField] private Text oxygentext;
     [SerializeField] private TrailRenderer traileffect;
+    public static int IronOre;
+    public static int CoperOre;
+    public static int TitaniumOre;
+    public static int ColdOre;
+    public static int CoalOre;
+    [SerializeField] private Text IronOreText;
+    [SerializeField] private Text CoperOreText;
+    [SerializeField] private Text TitaniumOreText;
+    [SerializeField] private Text ColdOreText;
+    [SerializeField] private Text CoalOreText;
     void Start() 
     {
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
-        PlayerHealth = 100;
-        PlayerOxygen = 100;
-
-
     }
     private void FixedUpdate()
     {
-        hptext.text = "hp:" + PlayerHealth;//for debug
-        oxygentext.text = "oxygen:" + PlayerOxygen;//for debug
+        hptext.text = ""+PlayerHealth;
+        oxygentext.text = "" +PlayerOxygen;
+        IronOreText.text = "" + IronOre;
+        CoperOreText.text = "" + CoperOre;
+        TitaniumOreText.text = "" + TitaniumOre;
+        ColdOreText.text = "" + ColdOre;
+        CoalOreText.text = "" + CoalOre;
         PlayerMovement();
         OxygenSystem();
+        JoystickInteract();
 
     }
     private void OxygenSystem()
@@ -97,9 +108,42 @@ public class player : MonoBehaviour
             transform.Translate(moveDelta.x * Time.deltaTime * 2, 0, 0);
         }
     }
+    private void JoystickInteract()
+    {
+        float x = InteractJoystick.Horizontal;
+        float y = InteractJoystick.Vertical;
+        if(Math.Abs(x) > 0.1f || Math.Abs(y) > 0.1f)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(x,
+                y), 3f, LayerMask.GetMask("Actor", "Blocking"));
+            if (hit.collider != null)
+            {
+                Mining(hit);
+            }
+        }
+        
+        
+
+    }
+    void Mining(RaycastHit2D hit)
+    {
+        if (hit.collider.tag == "Asteroid")
+        {
+            GameObject target = hit.transform.gameObject;
+            hit.transform.GetComponent<Asteroid>().AsteroidHealth -= 1f;
+            if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 0)
+            {
+                if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "meteor1") IronOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "meteor2") CoperOre++;
+                Destroy(target);
+            }
+            
+        }
+    }
     void OxygenAtBase()
     {
         if (PlayerOxygen < 100) PlayerOxygen++;
+        if (PlayerHealth < 100) PlayerHealth++;
         CancelInvoke("OxygenAtBase");
     }
     void OxygenAtSpace()
