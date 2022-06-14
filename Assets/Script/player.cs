@@ -14,40 +14,65 @@ public class player : MonoBehaviour
     private Vector3 moveDelta;
     private RaycastHit2D hit;
     private SpriteRenderer sprite;
-    [SerializeField] private Sprite[] playeranimationsprites = new Sprite[3];
-    [SerializeField] public static int PlayerHealth=100;
-    [SerializeField] public static int PlayerOxygen=100;
+    [SerializeField] private Sprite[] playeranimationsprites = new Sprite[6];
+    /// <UI>
+    [SerializeField] public static int PlayerHealth = 100;
+    [SerializeField] public static int PlayerOxygen = 100;
+    [SerializeField] public static int PlayerAmmo = 100;
     [SerializeField] private Text hptext;
     [SerializeField] private Text oxygentext;
+    [SerializeField] private Text playerAmmotext;
     [SerializeField] private TrailRenderer traileffect;
     public static int IronOre;
     public static int CoperOre;
     public static int TitaniumOre;
-    public static int ColdOre;
+    public static int GoldOre;
     public static int CoalOre;
     [SerializeField] private Text IronOreText;
     [SerializeField] private Text CoperOreText;
     [SerializeField] private Text TitaniumOreText;
-    [SerializeField] private Text ColdOreText;
+    [SerializeField] private Text GoldOreText;
     [SerializeField] private Text CoalOreText;
+    [SerializeField] private SpriteRenderer Background;
+    [SerializeField] private Sprite[] background;
+    /// </UI>
+    [SerializeField] private GameObject Bullet;
+    public Transform FirePoint;
+    private float nextFireTime;
+    [SerializeField] float bulletForce = 20f;
+    int i = 0; //for background animation
+    bool reloaded
+    {
+        get { return Time.time > nextFireTime; }
+    }
+    private int CurrentWeapon = 0; //0=drill; 1 and 2=gun; 3=nothing
+    [SerializeField] private AudioSource[] PlayerSound = new AudioSource[2];
     void Start() 
     {
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
+
+        
     }
     private void FixedUpdate()
     {
-        hptext.text = ""+PlayerHealth;
-        oxygentext.text = "" +PlayerOxygen;
-        IronOreText.text = "" + IronOre;
-        CoperOreText.text = "" + CoperOre;
-        TitaniumOreText.text = "" + TitaniumOre;
-        ColdOreText.text = "" + ColdOre;
-        CoalOreText.text = "" + CoalOre;
+        ShowUItext();
         PlayerMovement();
         OxygenSystem();
         JoystickInteract();
-
+        InvokeRepeating("BackgroundChange", 0.5f, 0.5f);
+        
+        }
+    private void ShowUItext()
+    {
+        hptext.text = "" + PlayerHealth;
+        oxygentext.text = "" + PlayerOxygen;
+        playerAmmotext.text = "" + PlayerAmmo;
+        IronOreText.text = "" + IronOre;
+        CoperOreText.text = "" + CoperOre;
+        TitaniumOreText.text = "" + TitaniumOre;
+        GoldOreText.text = "" + GoldOre;
+        CoalOreText.text = "" + CoalOre;
     }
     private void OxygenSystem()
     {
@@ -74,24 +99,29 @@ public class player : MonoBehaviour
         if (moveDelta.y > Math.Abs(moveDelta.x))
         {
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-            sprite.sprite = playeranimationsprites[2];
+            PlayerAnimationSprite(2);
         }
         else
-        if (moveDelta.x == 0 && moveDelta.y == 0)
+        if (moveDelta.y < 0 && Math.Abs(moveDelta.y)> Math.Abs(moveDelta.x))
         {
-            sprite.sprite = playeranimationsprites[1];
+            PlayerAnimationSprite(0);
+        }
+        else
+            if (moveDelta.x == 0 && moveDelta.y == 0)
+        {
+            PlayerAnimationSprite(0);
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
         }
         else
         if (moveDelta.x > 0)
         {
-            sprite.sprite = playeranimationsprites[0];
+            PlayerAnimationSprite(1);
             boxCollider.transform.localScale = Vector3.one;
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
         }
         else if (moveDelta.x < 0)
         {
-            sprite.sprite = playeranimationsprites[0];
+            PlayerAnimationSprite(1);
             boxCollider.transform.localScale = new Vector3(-1, 1, 1);
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
         }
@@ -114,16 +144,21 @@ public class player : MonoBehaviour
         float y = InteractJoystick.Vertical;
         if(Math.Abs(x) > 0.1f || Math.Abs(y) > 0.1f)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(x,
-                y), 3f, LayerMask.GetMask("Actor", "Blocking"));
-            if (hit.collider != null)
+            if (CurrentWeapon == 0)
             {
-                Mining(hit);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(x,
+                                y), 3f, LayerMask.GetMask("Actor", "Blocking"));
+                if (hit.collider != null)
+                {
+                    Mining(hit);
+                }
+            }else
+            if (CurrentWeapon == 1)
+            {
+                ShootingSystem();
             }
+            
         }
-        
-        
-
     }
     void Mining(RaycastHit2D hit)
     {
@@ -133,8 +168,11 @@ public class player : MonoBehaviour
             hit.transform.GetComponent<Asteroid>().AsteroidHealth -= 1f;
             if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 0)
             {
-                if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "meteor1") IronOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "meteor2") CoperOre++;
+                     if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron") IronOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_copper") CoperOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold") GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_coal") CoalOre++;
                 Destroy(target);
             }
             
@@ -148,8 +186,16 @@ public class player : MonoBehaviour
     }
     void OxygenAtSpace()
     {
-        if (PlayerOxygen > 0) PlayerOxygen -= 1;
-        if (PlayerOxygen <= 0) PlayerHealth -= 1;
+        if (PlayerOxygen > 0)
+        {
+            PlayerOxygen -= 1;
+            if (PlayerOxygen == 25 || PlayerOxygen == 15 || PlayerOxygen == 5) PlayerSound[1].Play();
+        }
+        if (PlayerOxygen <= 0)
+        {
+            PlayerHealth -= 1;
+            if (PlayerHealth == 100 || PlayerHealth == 75 || PlayerHealth == 50 || PlayerHealth == 25 || PlayerHealth == 1) PlayerSound[0].Play();
+        }
         if (PlayerHealth <= 0)
         {
             transform.localPosition = new Vector3(0, 0, -1);
@@ -158,4 +204,59 @@ public class player : MonoBehaviour
         }
         CancelInvoke("OxygenAtSpace");
     }
-}
+    void PlayerAnimationSprite(int currentSprite)
+    {
+        if (PlayerIsAtBase == true)
+        {
+            sprite.sprite = playeranimationsprites[currentSprite];
+            CurrentWeapon = 3;
+        }
+        if (CurrentWeapon == 0)
+        {
+            int a = currentSprite + 3;
+            sprite.sprite = playeranimationsprites[a];
+        }
+        
+    }
+    public void ChooseDrillButton()
+    {
+        CurrentWeapon = 0;
+    }
+    public void ChooseWeapon1Button()
+    {
+        CurrentWeapon = 1;
+    }
+    void BackgroundChange()
+    {
+        Background.sprite = background[i];
+        i++;
+        if (i == 3)
+        {
+            i = 0;
+        }
+        CancelInvoke("BackgroundChange");
+    }
+    void ShootingSystem()
+    {
+        if (reloaded && PlayerAmmo>0)
+        {
+            nextFireTime = Time.time + 0.5f;
+            float x = InteractJoystick.Horizontal * -1;
+            float y = InteractJoystick.Vertical;
+            float angle = Vector3.Angle(new Vector3(0.0f, 1.0f, 0.0f), new Vector3(x, y, 0.0f));
+            if (x < 0.0f)
+            {
+                angle = -angle;
+                angle = angle + 360;
+            }
+            FirePoint.eulerAngles = new Vector3(FirePoint.transform.position.x, FirePoint.transform.position.y, angle);
+            GameObject bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
+            Rigidbody2D rigidbody2D = bul.GetComponent<Rigidbody2D>();
+            rigidbody2D.AddForce(FirePoint.up * bulletForce, ForceMode2D.Impulse);
+            Physics2D.IgnoreCollision(bul.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            PlayerAmmo--;
+        }
+
+    }
+
+    }

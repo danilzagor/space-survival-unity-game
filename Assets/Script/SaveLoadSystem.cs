@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SaveLoadSystem : MonoBehaviour
 {
     void Awake()
     {
-        player.IronOre = PlayerPrefs.GetInt("IronOre");
-        player.CoperOre = PlayerPrefs.GetInt("CoperOre");
-        player.PlayerHealth = PlayerPrefs.GetInt("PlayerHealth");
-        player.PlayerOxygen = PlayerPrefs.GetInt("PlayerOxygen");
+        if(Menu.IsNewGame==0)
+        {
+            player.IronOre = PlayerPrefs.GetInt("IronOre");
+            player.CoperOre = PlayerPrefs.GetInt("CoperOre");
+            player.PlayerHealth = PlayerPrefs.GetInt("PlayerHealth");
+            player.PlayerOxygen = PlayerPrefs.GetInt("PlayerOxygen");
+        }
+
     }
     void Update()
     {
