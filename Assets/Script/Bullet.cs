@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private GameObject Explosion;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        GameObject effect = Instantiate(Explosion,gameObject.transform.position,Quaternion.identity);
+        Destroy(effect, 0.45f);
         Destroy(gameObject);
     }
     private void Update()
