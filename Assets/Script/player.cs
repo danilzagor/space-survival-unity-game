@@ -14,10 +14,13 @@ public class player : MonoBehaviour
     private Vector3 moveDelta;
     private RaycastHit2D hit;
     private SpriteRenderer sprite;
+    public static float MiningSpeed=0.3f;
     [SerializeField] private Sprite[] playeranimationsprites = new Sprite[6];
     /// <UI>
     [SerializeField] public static int PlayerHealth = 100;
     [SerializeField] public static int PlayerOxygen = 100;
+    public static int MaxPlayerOxygen = 100;
+    public static int MaxPlayerHealth = 100;
     [SerializeField] public static int PlayerAmmo = 100;
     [SerializeField] private Text hptext;
     [SerializeField] private Text oxygentext;
@@ -51,7 +54,8 @@ public class player : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
-
+        IronOre = 100;
+        CoperOre = 100;
         
     }
     private void FixedUpdate()
@@ -165,7 +169,7 @@ public class player : MonoBehaviour
         if (hit.collider.tag == "Asteroid")
         {
             GameObject target = hit.transform.gameObject;
-            hit.transform.GetComponent<Asteroid>().AsteroidHealth -= 1f;
+            hit.transform.GetComponent<Asteroid>().AsteroidHealth -= MiningSpeed;
             if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 0)
             {
                      if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron") IronOre++;
@@ -180,8 +184,8 @@ public class player : MonoBehaviour
     }
     void OxygenAtBase()
     {
-        if (PlayerOxygen < 100) PlayerOxygen++;
-        if (PlayerHealth < 100) PlayerHealth++;
+        if (PlayerOxygen < MaxPlayerOxygen) PlayerOxygen++;
+        //if (PlayerHealth < 100) PlayerHealth++;
         CancelInvoke("OxygenAtBase");
     }
     void OxygenAtSpace()
@@ -199,8 +203,8 @@ public class player : MonoBehaviour
         if (PlayerHealth <= 0)
         {
             transform.localPosition = new Vector3(0, 0, -1);
-            PlayerOxygen = 100;
-            PlayerHealth = 100;
+            PlayerOxygen = MaxPlayerOxygen;
+            PlayerHealth = MaxPlayerHealth;
         }
         CancelInvoke("OxygenAtSpace");
     }

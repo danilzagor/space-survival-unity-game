@@ -15,3 +15,4 @@ MonoBehaviour:
   id: IronPlateItem
   displayName: Iron Plate
   icon: {fileID: 21300000, guid: d6d9e1da6432b6a4ba71dbcded07df13, type: 3}
+  num: 2

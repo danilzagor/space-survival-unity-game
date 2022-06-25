@@ -12,6 +12,6 @@ public class UIInventorySlot : MonoBehaviour
         m_icon.sprite = item.data.icon;
         m_label.text = item.data.displayName;
         m_stackLabel.text = item.stackSize.ToString();
-        Debug.Log("Set2");
+        
     }
 }

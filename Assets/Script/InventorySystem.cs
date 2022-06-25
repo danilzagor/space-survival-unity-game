@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InventorySystem : MonoBehaviour
 {
-    private Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
+
+    public Dictionary<InventoryItemData, InventoryItem> m_itemDictionary;
     public List<InventoryItem> inventory { get; private set; }
     private void Awake()
     {
         inventory = new List<InventoryItem>();
+
         m_itemDictionary = new Dictionary<InventoryItemData, InventoryItem>();
     }
     public InventoryItem Get(InventoryItemData referenceData)
@@ -19,32 +21,36 @@ public class InventorySystem : MonoBehaviour
         }
         return null;
     }
-    public void Add(InventoryItemData referenceData)
+    public void Add(InventoryItemData referenceData, int a)
     {
         
         if(m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
         {
-            Debug.Log("SADSASDDAS");
-            value.AddToStack();
+
+            value.AddToStack(a);
         }
         else
         {
-            InventoryItem newItem = new InventoryItem(referenceData);
+            InventoryItem newItem = new InventoryItem(referenceData,a);
             inventory.Add(newItem);
-            Debug.Log("SADSASDDAS1212");
+
             m_itemDictionary.Add(referenceData, newItem);
         }
+
     }
-    public void Remove(InventoryItemData referenceData)
+    public void Remove(InventoryItemData referenceData, int a)
     {
         if (m_itemDictionary.TryGetValue(referenceData, out InventoryItem value))
         {
-            value.RemoveFromStack();
-            if (value.stackSize==0)
-            {
+            value.RemoveFromStack(a);
+            if (value.stackSize<1)
+            {   
+
                 inventory.Remove(value);
                 m_itemDictionary.Remove(referenceData);
             }    
         }
+
     }
+    
 }
