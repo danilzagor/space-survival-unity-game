@@ -19,12 +19,12 @@ public class CraftingSystem : MonoBehaviour
     public GameObject Inventory;
     [SerializeField] private GameObject CraftingProcess;
     [SerializeField] private Text[] NumberOfItemsForCraft = new Text[13];
-
+    
     private void Start()
     {
-        
         savingInv.InventoryForSaving = new int[16];
         InventoryLoading();
+
     }
     public void CraftIronIgnot()
     {
@@ -226,12 +226,12 @@ public class CraftingSystem : MonoBehaviour
     private void InventorySaving()
     {
         string json = JsonUtility.ToJson(savingInv);
-        using StreamWriter writer = new StreamWriter("Zamahaeva.json");
+        using StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Zamahaeva.json");
         writer.Write(json);
     }
     private void InventoryLoading()
     {
-        using StreamReader reader = new StreamReader("Zamahaeva.json");
+        using StreamReader reader = new StreamReader(Application.persistentDataPath + "/Zamahaeva.json");
         string json = reader.ReadToEnd();
         SavingInv savingInv = JsonUtility.FromJson<SavingInv>(json);
         

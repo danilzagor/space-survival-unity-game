@@ -18,24 +18,48 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 26605998080
-    m_Localized: Menu
+  - m_Id: 3234199802171392
+    m_Localized: Language
     m_Metadata:
       m_Items: []
-  - m_Id: 154645516288
-    m_Localized: Continue
+  - m_Id: 3237575935873024
+    m_Localized: Mute
     m_Metadata:
       m_Items: []
-  - m_Id: 215278374912
+  - m_Id: 3237725131460608
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
     m_Localized: Settings
     m_Metadata:
       m_Items: []
-  - m_Id: 285914648576
-    m_Localized: Back in main menu
+  - m_Id: 3243452080279552
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
-  - m_Id: 1594252283904
-    m_Localized: Language
+  - m_Id: 3244502849900544
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244691027349504
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244814641876992
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Localized: Use medblock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Localized: Open equipment table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247054844809216
+    m_Localized: Open crafting table
     m_Metadata:
       m_Items: []
   references:

@@ -18,8 +18,48 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 1594252283904
-    m_Localized: dd
+  - m_Id: 3234199802171392
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237575935873024
+    m_Localized: Ton ausschalten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237725131460608
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243452080279552
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244502849900544
+    m_Localized: "Men\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244691027349504
+    m_Localized: Vorgehen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244814641876992
+    m_Localized: Hinausgehen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247054844809216
+    m_Localized: "Werkbank \xF6ffnen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Localized: "Ger\xE4tetisch \xF6ffnen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Localized: Verwenden Sie den Medblock
     m_Metadata:
       m_Items: []
   references:

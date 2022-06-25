@@ -18,12 +18,48 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 26605998080
+  - m_Id: 3234199802171392
+    m_Localized: "J\u0119zyk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237725131460608
+    m_Localized: "Powr\xF3t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237575935873024
+    m_Localized: "Wy\u0142\u0105czy\u0107 d\u017Awi\u0119k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
+    m_Localized: Ustawienia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243452080279552
+    m_Localized: Ustawienia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244814641876992
+    m_Localized: "Wyj\u015B\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244691027349504
+    m_Localized: "Kontynuowa\u0107"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244502849900544
     m_Localized: Menu
     m_Metadata:
       m_Items: []
-  - m_Id: 1594252283904
-    m_Localized: "J\u0119zyk"
+  - m_Id: 3247054844809216
+    m_Localized: "Otw\xF3rz st\xF3\u0142 warsztatowy"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Localized: "Otw\xF3rz st\xF3\u0142 z wyposa\u017Ceniem"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Localized: "Skorzysta\u0107 z medblock"
     m_Metadata:
       m_Items: []
   references:

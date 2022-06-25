@@ -18,8 +18,48 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 1594252283904
-    m_Localized: asd
+  - m_Id: 3234199802171392
+    m_Localized: "L\xEDngua"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
+    m_Localized: "Defini\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237575935873024
+    m_Localized: Desligue o som
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237725131460608
+    m_Localized: Costas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243452080279552
+    m_Localized: "Defini\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244502849900544
+    m_Localized: "Card\xE1pio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244691027349504
+    m_Localized: Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244814641876992
+    m_Localized: Sair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247054844809216
+    m_Localized: Abrir bancada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Localized: Mesa de equipamentos aberta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Localized: Use o medblock
     m_Metadata:
       m_Items: []
   references:

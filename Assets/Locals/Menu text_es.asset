@@ -18,8 +18,48 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 1594252283904
-    m_Localized: sd
+  - m_Id: 3234199802171392
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237725131460608
+    m_Localized: Espalda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237575935873024
+    m_Localized: Apaga el sonido
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3243452080279552
+    m_Localized: Ajustes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244502849900544
+    m_Localized: "Men\xFA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244691027349504
+    m_Localized: Proceder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3244814641876992
+    m_Localized: Apagarse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247054844809216
+    m_Localized: Mesa de trabajo abierta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Localized: Mesa de equipo abierta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Localized: "Usa el bloque m\xE9dico"
     m_Metadata:
       m_Items: []
   references:

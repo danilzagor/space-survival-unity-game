@@ -15,24 +15,48 @@ MonoBehaviour:
   m_TableCollectionName: Menu text
   m_TableCollectionNameGuidString: 6df0d4a494a07904aba8e258afc053e9
   m_Entries:
-  - m_Id: 26605998080
-    m_Key: Menu
+  - m_Id: 3244814641876992
+    m_Key: Game/Canvas/MenuPanel/BackInMenu/Text (Legacy)
     m_Metadata:
       m_Items: []
-  - m_Id: 154645516288
-    m_Key: Continue
+  - m_Id: 3244691027349504
+    m_Key: Game/Canvas/MenuPanel/Continue/Text (Legacy)
     m_Metadata:
       m_Items: []
-  - m_Id: 215278374912
-    m_Key: Settings
+  - m_Id: 3243452080279552
+    m_Key: Game/Canvas/MenuPanel/Settings/Text (Legacy)
     m_Metadata:
       m_Items: []
-  - m_Id: 285914648576
-    m_Key: Back in main menu
+  - m_Id: 3244502849900544
+    m_Key: Game/Canvas/MenuPanel/Text (Legacy)
     m_Metadata:
       m_Items: []
-  - m_Id: 1594252283904
-    m_Key: Language
+  - m_Id: 3237725131460608
+    m_Key: Game/Canvas/SettingsPanel/Back/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3234199802171392
+    m_Key: Game/Canvas/SettingsPanel/Localization/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3237575935873024
+    m_Key: Game/Canvas/SettingsPanel/Mute/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3239241397522432
+    m_Key: Game/Canvas/SettingsPanel/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247054844809216
+    m_Key: Game/CraftingCanvas/Crafting table/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3247009298862080
+    m_Key: Game/CraftingCanvas/Equipment/Text (Legacy)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3246932404686848
+    m_Key: Game/CraftingCanvas/MedBlock/Text (Legacy)
     m_Metadata:
       m_Items: []
   m_Metadata:
