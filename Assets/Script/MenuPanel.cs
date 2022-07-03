@@ -8,6 +8,8 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] GameObject SettingsPanel;
     bool PanelIsOpen = false;
     [SerializeField] AudioSource[] audioSources;
+    [SerializeField] GameObject Player;
+    [SerializeField] GameObject DeathPanel;
     public void OpenCloseMenuPanel()
     {
         PanelIsOpen = !PanelIsOpen;
@@ -61,5 +63,23 @@ public class MenuPanel : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("IsMute",isMute);
+    }
+    public void Revive()
+    {
+        Player.transform.position = new Vector3(0, 0, -1);
+        player.PlayerHealth = player.MaxPlayerHealth;
+        player.PlayerOxygen = player.MaxPlayerOxygen;
+        DeathPanel.SetActive(false);
+        Player.GetComponent<Rigidbody2D>().constraints= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        Player.GetComponent<Rigidbody2D>().constraints = 0;
+        Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+   
+    private void Update()
+    {
+        if (player.PlayerHealth <= 0)
+        {
+            DeathPanel.SetActive(true);
+        }
     }
 }

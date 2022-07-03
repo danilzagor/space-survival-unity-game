@@ -38,6 +38,8 @@ public class player : MonoBehaviour
     [SerializeField] private Text CoalOreText;
     [SerializeField] private SpriteRenderer Background;
     [SerializeField] private Sprite[] background;
+    [SerializeField] private GameObject AsteroidHp;
+    [SerializeField] public static GameObject Text;
     /// </UI>
     [SerializeField] private GameObject Bullet;
     public Transform FirePoint;
@@ -54,19 +56,25 @@ public class player : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
-        IronOre = 100;
-        CoperOre = 100;
-        
+        Text = AsteroidHp;
     }
     private void FixedUpdate()
     {
         ShowUItext();
-        PlayerMovement();
+        if (InteractJoystick.Horizontal != 0 || InteractJoystick.Vertical != 0)
+        {
+
+            PlayerMovement();
+            PlayerSide();
+        }
+        else PlayerMovement();
         OxygenSystem();
         JoystickInteract();
         InvokeRepeating("BackgroundChange", 0.5f, 0.5f);
-        
-        }
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        gameObject.GetComponent<Rigidbody2D>().constraints = 0;
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
     private void ShowUItext()
     {
         hptext.text = "" + PlayerHealth;
@@ -146,7 +154,7 @@ public class player : MonoBehaviour
     {
         float x = InteractJoystick.Horizontal;
         float y = InteractJoystick.Vertical;
-        if(Math.Abs(x) > 0.1f || Math.Abs(y) > 0.1f)
+        if (Math.Abs(x) > 0.1f || Math.Abs(y) > 0.1f)
         {
             if (CurrentWeapon == 0)
             {
@@ -156,12 +164,16 @@ public class player : MonoBehaviour
                 {
                     Mining(hit);
                 }
-            }else
-            if (CurrentWeapon == 1)
+            } else
+            if (CurrentWeapon == 1 )
             {
                 ShootingSystem();
             }
-            
+            if (CurrentWeapon == 2)
+            {
+                ShootingSystem();
+            }
+
         }
     }
     void Mining(RaycastHit2D hit)
@@ -169,14 +181,20 @@ public class player : MonoBehaviour
         if (hit.collider.tag == "Asteroid")
         {
             GameObject target = hit.transform.gameObject;
-            hit.transform.GetComponent<Asteroid>().AsteroidHealth -= MiningSpeed;
-            if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 0)
+                hit.transform.GetComponent<Asteroid>().AsteroidHealth -= MiningSpeed;
+            if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 1)
             {
-                     if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron") IronOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_copper") CoperOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold") GoldOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan") TitaniumOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_coal") CoalOre++;
+                     if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron_9") IronOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_copper_9") CoperOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold_9") GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan_9") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_coal_9") CoalOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_iron") IronOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_copper") CoperOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_gold") GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_titan") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_coal") CoalOre++;
+                Text.SetActive(false);
                 Destroy(target);
             }
             
@@ -184,7 +202,7 @@ public class player : MonoBehaviour
     }
     void OxygenAtBase()
     {
-        if (PlayerOxygen < MaxPlayerOxygen) PlayerOxygen++;
+        if (PlayerOxygen < MaxPlayerOxygen) PlayerOxygen+=5;
         //if (PlayerHealth < 100) PlayerHealth++;
         CancelInvoke("OxygenAtBase");
     }
@@ -200,12 +218,7 @@ public class player : MonoBehaviour
             PlayerHealth -= 1;
             if (PlayerHealth == 100 || PlayerHealth == 75 || PlayerHealth == 50 || PlayerHealth == 25 || PlayerHealth == 1) PlayerSound[0].Play();
         }
-        if (PlayerHealth <= 0)
-        {
-            transform.localPosition = new Vector3(0, 0, -1);
-            PlayerOxygen = MaxPlayerOxygen;
-            PlayerHealth = MaxPlayerHealth;
-        }
+        
         CancelInvoke("OxygenAtSpace");
     }
     void PlayerAnimationSprite(int currentSprite)
@@ -220,7 +233,17 @@ public class player : MonoBehaviour
             int a = currentSprite + 3;
             sprite.sprite = playeranimationsprites[a];
         }
-        
+        if (CurrentWeapon == 1)
+        {
+            int a = currentSprite + 6;
+            sprite.sprite = playeranimationsprites[a];
+        }
+        if (CurrentWeapon == 2)
+        {
+            int a = currentSprite + 9;
+            sprite.sprite = playeranimationsprites[a];
+        }
+
     }
     public void ChooseDrillButton()
     {
@@ -229,6 +252,10 @@ public class player : MonoBehaviour
     public void ChooseWeapon1Button()
     {
         CurrentWeapon = 1;
+    }
+    public void ChooseWeapon2Button()
+    {
+        CurrentWeapon = 2;
     }
     void BackgroundChange()
     {
@@ -262,5 +289,46 @@ public class player : MonoBehaviour
         }
 
     }
+
+    void PlayerSide()
+    {
+        
+        
+            float x = InteractJoystick.Horizontal;
+            float y = InteractJoystick.Vertical;
+            moveDelta = new Vector3(x, y, 0);
+
+            if (moveDelta.y > Math.Abs(moveDelta.x))
+            {
+
+                PlayerAnimationSprite(2);
+            }
+            else
+            if (moveDelta.y < 0 && Math.Abs(moveDelta.y) > Math.Abs(moveDelta.x))
+            {
+                PlayerAnimationSprite(0);
+            }
+            else
+                if (moveDelta.x == 0 && moveDelta.y == 0)
+            {
+                PlayerAnimationSprite(0);
+
+            }
+            else
+            if (moveDelta.x > 0)
+            {
+                PlayerAnimationSprite(1);
+                boxCollider.transform.localScale = Vector3.one;
+                
+            }
+            else if (moveDelta.x < 0)
+            {
+                PlayerAnimationSprite(1);
+                boxCollider.transform.localScale = new Vector3(-1, 1, 1);
+
+            }
+            
+        }
+    
 
     }

@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -100,13 +100,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -155,13 +155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -210,13 +210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -265,13 +265,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -320,13 +320,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -375,13 +375,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
@@ -430,14 +430,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
+  - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
-  - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}
 --- !u!1 &5698776961086883796
@@ -464,7 +466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5698776961086883796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.23, y: -19.19, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -525,13 +527,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Asteroids:
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
-  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
-  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 4150259702743683940, guid: 2a89e37fdb74c2f409ed609118687240, type: 3}
+  - {fileID: 7470220339525845576, guid: f01aa09bcfebb3d41a7dac7b22dccdcc, type: 3}
   - {fileID: 1055520335305642261, guid: 7f8a2b4b0016c4a429d5ff139d44d504, type: 3}
-  - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
+  - {fileID: 861493584057731226, guid: c6d12dd0c310f39449f40002292ef403, type: 3}
+  - {fileID: 7470220339525845576, guid: dd2e662698dcf794d81ca79ac9a91329, type: 3}
+  - {fileID: 1055520335305642261, guid: b2f73f103e2a9774daf14c72ac10bdf1, type: 3}
+  - {fileID: 861493584057731226, guid: fa35324911bf3f64db67c8981ebf9a23, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   - {fileID: 4150259702743683940, guid: 62a4affb6b1e5e44c90b81a24569d50f, type: 3}
   Chunk: {fileID: 5698776961086883796}

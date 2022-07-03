@@ -137,3 +137,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AsteroidHealth: 100
+  AnimationSprites:
+  - {fileID: 21300000, guid: a0075a7d51b9f4040a45271d46461994, type: 3}
+  - {fileID: 21300000, guid: 0571f18b5cf6c0d428232f931ea19531, type: 3}
+  - {fileID: 21300000, guid: 661705d28e520c94b89a0a189283e673, type: 3}
+  - {fileID: 21300000, guid: d62824c50196a3940b0ef2f50ec77774, type: 3}
+  - {fileID: 21300000, guid: 194229a4895592f4ea08531a77310bad, type: 3}
+  - {fileID: 21300000, guid: c5e4055fdca577f459b808ce8ade0f4e, type: 3}
+  - {fileID: 21300000, guid: ae58a4c350723f84ebc622e371fbc85a, type: 3}
+  - {fileID: 21300000, guid: ebf372964814c6c46978ac8da8fdd9f9, type: 3}
+  - {fileID: 21300000, guid: 2955d2a21b6ee6a4e847773e4ae7ec87, type: 3}
+  - {fileID: 21300000, guid: 63405d7d5f13ffd48a5e386e8e69449f, type: 3}

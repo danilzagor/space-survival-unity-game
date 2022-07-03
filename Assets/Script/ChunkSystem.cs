@@ -10,7 +10,7 @@ public class ChunkSystem : MonoBehaviour
     private void Start()
     {
         distanceThreshold = 32;
-        Chunks = GameObject.FindGameObjectsWithTag("Chunk");
+        //Chunks = GameObject.FindGameObjectsWithTag("Chunk");
     }
     void Update()
     {
@@ -28,14 +28,14 @@ public class ChunkSystem : MonoBehaviour
                 {
                     Chunk.SetActive(true);
                 }
-            }else if(Mathf.Abs(Chunk.transform.position.x)< 16 || Mathf.Abs(Chunk.transform.position.x) < 16)
+            }/*else if(Mathf.Abs(Chunk.transform.position.x)< 16 || Mathf.Abs(Chunk.transform.position.y) < 16)
             {
                 if (Mathf.Abs(distanceToChunk) < 16)
                 {
                     Chunk.SetActive(true);
                 }
                 else Chunk.SetActive(false);
-            }
+            }*/
             else Chunk.SetActive(false);
             
         }
