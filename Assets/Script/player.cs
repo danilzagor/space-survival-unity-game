@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class player : MonoBehaviour
 {  
     public static bool PlayerIsAtBase;
+    public static Transform PlayerGameObject;
     public static CapsuleCollider2D boxCollider;
     public Joystick joystick;
     public Joystick InteractJoystick;
@@ -52,8 +53,12 @@ public class player : MonoBehaviour
     }
     private int CurrentWeapon = 0; //0=drill; 1 and 2=gun; 3=nothing
     [SerializeField] private AudioSource[] PlayerSound = new AudioSource[2];
-    void Start() 
+    private void Awake()
     {
+        PlayerGameObject = GetComponent<Transform>();
+    }
+    void Start() 
+    {        
         sprite = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<CapsuleCollider2D>();
         Text = AsteroidHp;
@@ -227,6 +232,12 @@ public class player : MonoBehaviour
         {
             sprite.sprite = playeranimationsprites[currentSprite];
             CurrentWeapon = 3;
+        }
+        if (PlayerIsAtBase == false)
+        {
+            int a = currentSprite + 6;
+            sprite.sprite = playeranimationsprites[a];
+            CurrentWeapon = 1;
         }
         if (CurrentWeapon == 0)
         {
