@@ -5,8 +5,8 @@ using UnityEngine;
 public class AmebaEnemy : Enemy
 {
     
-    public override void MimicFunc()
+    /*public override void MimicFunc()
     {
         
-    }
+    }*/
 }

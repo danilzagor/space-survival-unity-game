@@ -43,6 +43,7 @@ public class player : MonoBehaviour
     [SerializeField] public static GameObject Text;
     /// </UI>
     [SerializeField] private GameObject Bullet;
+    [SerializeField] private GameObject SniperBullet;
     public Transform FirePoint;
     private float nextFireTime;
     [SerializeField] float bulletForce = 20f;
@@ -233,12 +234,12 @@ public class player : MonoBehaviour
             sprite.sprite = playeranimationsprites[currentSprite];
             CurrentWeapon = 3;
         }
-        if (PlayerIsAtBase == false)
+        /*if (PlayerIsAtBase == false)
         {
             int a = currentSprite + 6;
             sprite.sprite = playeranimationsprites[a];
             CurrentWeapon = 1;
-        }
+        }*/
         if (CurrentWeapon == 0)
         {
             int a = currentSprite + 3;
@@ -280,9 +281,19 @@ public class player : MonoBehaviour
     }
     void ShootingSystem()
     {
+        float TimeToShoot=0.5f;
+        if (CurrentWeapon == 1)
+        {
+            TimeToShoot = 0.5f;
+        }else
+        if (CurrentWeapon == 2)
+        {
+            TimeToShoot = 1.5f;
+        }
+
         if (reloaded && PlayerAmmo>0)
         {
-            nextFireTime = Time.time + 0.5f;
+            nextFireTime = Time.time + TimeToShoot;
             float x = InteractJoystick.Horizontal * -1;
             float y = InteractJoystick.Vertical;
             float angle = Vector3.Angle(new Vector3(0.0f, 1.0f, 0.0f), new Vector3(x, y, 0.0f));
@@ -292,7 +303,16 @@ public class player : MonoBehaviour
                 angle = angle + 360;
             }
             FirePoint.eulerAngles = new Vector3(FirePoint.transform.position.x, FirePoint.transform.position.y, angle);
-            GameObject bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
+            GameObject bul=gameObject;
+            if (CurrentWeapon == 1)
+            {
+                 bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
+            }else
+            if (CurrentWeapon == 2)
+            {
+                bul = Instantiate(SniperBullet, FirePoint.transform.position, FirePoint.rotation);
+            }
+            
             Rigidbody2D rigidbody2D = bul.GetComponent<Rigidbody2D>();
             rigidbody2D.AddForce(FirePoint.up * bulletForce, ForceMode2D.Impulse);
             Physics2D.IgnoreCollision(bul.GetComponent<Collider2D>(), GetComponent<Collider2D>());

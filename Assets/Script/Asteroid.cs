@@ -34,12 +34,10 @@ public class Asteroid : MonoBehaviour
         if (lastHealth != AsteroidHealth)
         {
             player.Text.SetActive(true);
-            StartCoroutine("DisableAsteroidHealth");
+            Invoke("DisableAsteroidHealth",7f);
             lastHealth = AsteroidHealth;
-            a.GetComponentInChildren<Text>().text = "" + Mathf.Abs(((int)lastHealth));
-            Debug.Log(a);           
+            a.GetComponentInChildren<Text>().text = "" + Mathf.Abs(((int)lastHealth));       
             MiningAnimation();
-            Debug.Log(HpToChangeAnimation);
         }
         _angle += RotateSpeed * Time.deltaTime;
         transform.eulerAngles += new Vector3(0, 0, RotateSpeed * Time.deltaTime);
@@ -50,7 +48,6 @@ public class Asteroid : MonoBehaviour
     }
     void MiningAnimation()
     {
-        Debug.Log(AsteroidHealth);
         if (AsteroidHealth <= HpToChangeAnimation && AsteroidHealth >= (HpToChangeAnimation-10))
         {
 
@@ -59,30 +56,11 @@ public class Asteroid : MonoBehaviour
             HpToChangeAnimation -= 10;
         }
     }
-    private IEnumerator DisableAsteroidHealth()
+    private void DisableAsteroidHealth()
     {
-        int k = 0;
         
-        if (lastHealth == AsteroidHealth)
-        {
-            k++;
-        }
-        yield return new WaitForSeconds(1f);
-        if (lastHealth == AsteroidHealth)
-        {
-            k++;
-        }
-        yield return new WaitForSeconds(1f);
-        if (lastHealth == AsteroidHealth)
-        {
-            k++;
-        }
-        yield return new WaitForSeconds(1f);
-        if (k == 3)
-        {
             player.Text.SetActive(false);
-        }
-        else k = 0;
+        
 
     }
 }

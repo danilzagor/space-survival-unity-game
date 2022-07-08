@@ -24,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
 
     // Update is called once per frame
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         direction = playerTransform.position - transform.position;
         if (direction.magnitude <= distanceToAttack)
@@ -38,11 +38,8 @@ public abstract class Enemy : MonoBehaviour
                 moveCharacter(movement);
             }
 
-        }
-        MimicFunc();
-
-    }
-    public abstract void MimicFunc();
+        }       
+    }   
     void moveCharacter(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));
@@ -58,24 +55,29 @@ public abstract class Enemy : MonoBehaviour
             }
         }
         else
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Bullet 1(Clone)")
         {
-            Invoke("GiveDamage", 1f);
-            Attack = true;
-            rb.MovePosition((Vector2)transform.position - (moveSpeed * Time.deltaTime * direction*2));
-            if (player.PlayerHealth <= 0)
+            health -= 100;
+            if (health <= 0)
             {
-                player.PlayerHealth = 0;
-                player.PlayerOxygen = 0;
-                CancelInvoke("GiveDamage");
-                Attack = false;
+                Destroy(gameObject);
             }
         }
-    }
-    private void GiveDamage()
+        else
+        if (collision.gameObject.name == "Player")
+        {
+            if (player.PlayerHealth > 0)
+            {
+                Attack = true;
+                Invoke("IsAttack", 1f);
+                rb.MovePosition((Vector2)transform.position - (2 * moveSpeed * Time.deltaTime * direction));
+                player.PlayerHealth -= EnemyDamage;
+            }           
+        }
+    }    
+    private void IsAttack()
     {
-        Attack = false;
-        player.PlayerHealth -= EnemyDamage;       
+        Attack = false;       
     }
     
 }
