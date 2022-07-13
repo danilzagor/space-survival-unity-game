@@ -193,17 +193,17 @@ public class CraftingSystem : MonoBehaviour
     }
     public void CraftArmorLvl2()
     {
-        Debug.Log("asd2");
+
         if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value)
             && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value1)
             && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[7], out InventoryItem value2)
             && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value3))
         {
-            Debug.Log(player.MaxPlayerHealth);
+
             if (value.stackSize >= 10 && value1.stackSize >= 10 && value2.stackSize >= 2
                 && value3.stackSize >= 2 && player.MaxPlayerHealth == 100)
             {
-                Debug.Log("asd");
+
                 InventorySystem.Remove(referenceItem[2], 10);
                 savingInv.InventoryForSaving[2] -= 10;
                 InventorySystem.Remove(referenceItem[3], 10);
@@ -255,7 +255,6 @@ public class CraftingSystem : MonoBehaviour
         }
         InventorySystem.Add(referenceItem, a);
         savingInv.InventoryForSaving[b] += a;
-        Debug.Log(savingInv.InventoryForSaving[b]);
         foreach (InventoryItem item in InventorySystem.inventory)
         {
 

@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     {
         
         GameObject effect = Instantiate(Explosion,gameObject.transform.position,Quaternion.identity);
-        if (Explosion.name == "explosion_sniper_0(Clone)")
+        if (effect.name == "explosion_sniper_0(Clone)")
         {
             Destroy(effect, 0.75f);
             
@@ -23,16 +23,5 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject, 1f);
     }
-    /*private void Update()
-        
-    {
-        Debug.Log(gameObject.transform.position.magnitude + "bullet");
-        Debug.Log(Camera.main.transform.position.magnitude + "camera");
-        Debug.Log(gameObject.transform.position.magnitude - Camera.main.transform.position.magnitude+ "difference");
-        if (gameObject.transform.position.magnitude > Camera.main.transform.position.magnitude)
-        {
-            Debug.Log("ASD");
-            Destroy(gameObject);
-        }
-    }*/
+    
 }

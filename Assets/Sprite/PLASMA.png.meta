@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 2d2479a0ae67c2c46a1ba2d808b606fb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PLASMA_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 36
+        width: 66
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c433701c69fb564091ac05bb76baf9f
+      internalID: -530494349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_18
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 92
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b4e597b37291047add734481d4fe5d
+      internalID: 1993786814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_2
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 38
+        width: 64
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cad84df64dec324698a556ba6c9c617
+      internalID: 2062738599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_3
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 36
+        width: 66
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0cb07ff7c21ad34ead29d5279b55102
+      internalID: -848454166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_4
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 36
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246385e9d82da934eb33c20725f4d82c
+      internalID: 1245490435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 48
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3cdcc15b588914a8c62b8a2f870b0e
+      internalID: -192375374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PLASMA_5
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 36
+        width: 72
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5ce742ea8310b549885ba8aa7e299be
+      internalID: 1895511233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 704eb2282c260844193644cb3498233b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PLASMA_12: -2107078047
+      PLASMA_52: -1719407006
+      PLASMA_2: 2062738599
+      PLASMA_1: -530494349
+      PLASMA_3: -848454166
+      PLASMA_47: -309444412
+      PLASMA_31: 471838298
+      PLASMA_41: -1676960021
+      PLASMA_0: -192375374
+      PLASMA_54: -758094041
+      PLASMA_50: -1352365873
+      PLASMA_56: -352482369
+      PLASMA_57: 4888552
+      PLASMA_49: 1324449594
+      PLASMA_24: 1978501284
+      PLASMA_7: -952284243
+      PLASMA_13: 100266552
+      PLASMA_30: -1736501058
+      PLASMA_43: -975906650
+      PLASMA_39: -1517695244
+      PLASMA_5: 1895511233
+      PLASMA_26: 384328303
+      PLASMA_16: 1255281135
+      PLASMA_22: 191838523
+      PLASMA_21: -259525461
+      PLASMA_53: -1270033125
+      PLASMA_10: -658070140
+      PLASMA_14: -159055843
+      PLASMA_28: -302109566
+      PLASMA_23: 1386668268
+      PLASMA_6: 1970552208
+      PLASMA_42: 1855532768
+      PLASMA_15: -1528050358
+      PLASMA_36: 21998133
+      PLASMA_25: -766001048
+      PLASMA_55: 975602080
+      PLASMA_45: -1217165278
+      PLASMA_33: 643935946
+      PLASMA_9: -723554782
+      PLASMA_11: 2047478084
+      PLASMA_27: 1529004348
+      PLASMA_18: 1993786814
+      PLASMA_38: -1715351753
+      PLASMA_46: -1230819300
+      PLASMA_40: -353137710
+      PLASMA_34: 909408617
+      PLASMA_48: -1515997518
+      PLASMA_44: 2038328012
+      PLASMA_8: 1117793788
+      PLASMA_4: 1245490435
+      PLASMA_37: 337617980
+      PLASMA_51: 2008894431
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

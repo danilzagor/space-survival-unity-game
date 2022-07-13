@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    private Transform playerTransform;
+    public Transform playerTransform;
     private Rigidbody2D rb;
     private Vector2 movement;
     public float moveSpeed = 1.5f;
-    private Vector2 direction;
+    public Vector2 direction;
     public int health = 100;
     bool Attack=false;
     public int distanceToAttack=16;
@@ -18,7 +18,6 @@ public abstract class Enemy : MonoBehaviour
     {
         
         playerTransform = player.PlayerGameObject;
-        Debug.Log(playerTransform);
         rb = this.GetComponent<Rigidbody2D>();
     }
 
@@ -29,17 +28,25 @@ public abstract class Enemy : MonoBehaviour
         direction = playerTransform.position - transform.position;
         if (direction.magnitude <= distanceToAttack)
         {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            rb.rotation = angle - 270;
-            direction.Normalize();
-            movement = direction;
-            if(Attack == false)
-            {
-                moveCharacter(movement);
-            }
-
+            FindWay(direction);
+            IsInAttack();
         }       
     }   
+    protected virtual void FindWay(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb.rotation = angle - 270; // change    rb.rotation = angle - 270;
+        direction.Normalize();
+        movement = direction;
+        
+    }
+    protected virtual void IsInAttack()
+    {
+        if (Attack == false)
+        {
+            moveCharacter(movement);
+        }
+    }
     void moveCharacter(Vector2 direction)
     {
         rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));

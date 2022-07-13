@@ -34,7 +34,8 @@ public class Asteroid : MonoBehaviour
         if (lastHealth != AsteroidHealth)
         {
             player.Text.SetActive(true);
-            Invoke("DisableAsteroidHealth",7f);
+            CancelInvoke("DisableAsteroidHealth");
+            Invoke("DisableAsteroidHealth",2f);
             lastHealth = AsteroidHealth;
             a.GetComponentInChildren<Text>().text = "" + Mathf.Abs(((int)lastHealth));       
             MiningAnimation();

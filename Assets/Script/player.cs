@@ -165,7 +165,7 @@ public class player : MonoBehaviour
             if (CurrentWeapon == 0)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(x,
-                                y), 3f, LayerMask.GetMask("Actor", "Blocking"));
+                                y), 1f, LayerMask.GetMask("Actor", "Blocking"));
                 if (hit.collider != null)
                 {
                     Mining(hit);
@@ -208,7 +208,8 @@ public class player : MonoBehaviour
     }
     void OxygenAtBase()
     {
-        if (PlayerOxygen < MaxPlayerOxygen) PlayerOxygen+=5;
+        if (PlayerOxygen < MaxPlayerOxygen - 5) PlayerOxygen += 5;
+        else PlayerOxygen = MaxPlayerOxygen;
         //if (PlayerHealth < 100) PlayerHealth++;
         CancelInvoke("OxygenAtBase");
     }
@@ -296,23 +297,22 @@ public class player : MonoBehaviour
             nextFireTime = Time.time + TimeToShoot;
             float x = InteractJoystick.Horizontal * -1;
             float y = InteractJoystick.Vertical;
-            float angle = Vector3.Angle(new Vector3(0.0f, 1.0f, 0.0f), new Vector3(x, y, 0.0f));
+            float angle = Vector3.Angle(new Vector3(0f, 1f, 0.0f), new Vector3(x, y, 0.0f));
             if (x < 0.0f)
             {
                 angle = -angle;
                 angle = angle + 360;
             }
-            FirePoint.eulerAngles = new Vector3(FirePoint.transform.position.x, FirePoint.transform.position.y, angle);
+            FirePoint.eulerAngles = new Vector3(0, 0, angle);
             GameObject bul=gameObject;
             if (CurrentWeapon == 1)
             {
-                 bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
+                bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
             }else
             if (CurrentWeapon == 2)
             {
                 bul = Instantiate(SniperBullet, FirePoint.transform.position, FirePoint.rotation);
             }
-            
             Rigidbody2D rigidbody2D = bul.GetComponent<Rigidbody2D>();
             rigidbody2D.AddForce(FirePoint.up * bulletForce, ForceMode2D.Impulse);
             Physics2D.IgnoreCollision(bul.GetComponent<Collider2D>(), GetComponent<Collider2D>());
