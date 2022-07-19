@@ -67,6 +67,16 @@ public class player : MonoBehaviour
     private void FixedUpdate()
     {
         ShowUItext();
+        
+        OxygenSystem();
+        JoystickInteract();
+        InvokeRepeating("BackgroundChange", 0.5f, 0.5f);
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        gameObject.GetComponent<Rigidbody2D>().constraints = 0;
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    private void Update()
+    {
         if (InteractJoystick.Horizontal != 0 || InteractJoystick.Vertical != 0)
         {
 
@@ -74,12 +84,6 @@ public class player : MonoBehaviour
             PlayerSide();
         }
         else PlayerMovement();
-        OxygenSystem();
-        JoystickInteract();
-        InvokeRepeating("BackgroundChange", 0.5f, 0.5f);
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-        gameObject.GetComponent<Rigidbody2D>().constraints = 0;
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
     }
     private void ShowUItext()
     {
@@ -148,12 +152,14 @@ public class player : MonoBehaviour
         if (hit.collider == null)
         {
             transform.Translate(0, moveDelta.y * Time.deltaTime * 2, 0);
+            //transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(0, moveDelta.y* 2, 0), Time.deltaTime);
         }
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0,
             new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
         if (hit.collider == null)
         {
-            transform.Translate(moveDelta.x * Time.deltaTime * 2, 0, 0);
+            transform.Translate(moveDelta.x * Time.deltaTime*2, 0, 0);
+            //transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(moveDelta.x * 2, 0, 0), Time.deltaTime);
         }
     }
     private void JoystickInteract()
@@ -195,11 +201,11 @@ public class player : MonoBehaviour
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold_9") GoldOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan_9") TitaniumOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_coal_9") CoalOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_iron") IronOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_copper") CoperOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_gold") GoldOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_titan") TitaniumOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_coal") CoalOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_iron_br_9") IronOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_copper_br_9") CoperOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_gold_br_9") GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_titan_br_9") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_coal_br_9") CoalOre++;
                 Text.SetActive(false);
                 Destroy(target);
             }

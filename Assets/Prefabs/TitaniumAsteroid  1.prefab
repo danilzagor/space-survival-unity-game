@@ -121,7 +121,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AsteroidHealth: 100
-  AnimationSprites: []
+  AnimationSprites:
+  - {fileID: -1153170454, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: 1318313100, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: 1324109580, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: 2072705850, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: -2015619224, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: -1131869179, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: 495882756, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: -1161086909, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: -229629857, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
+  - {fileID: -2005982775, guid: f5a0e1cc7ed401045817b5b46727000e, type: 3}
 --- !u!70 &-4279813878616114440
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

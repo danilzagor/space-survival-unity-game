@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour
     public int distanceToAttack=16;
     public int EnemyDamage;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         
         playerTransform = player.PlayerGameObject;
@@ -51,23 +51,23 @@ public abstract class Enemy : MonoBehaviour
     {
         rb.MovePosition((Vector2)transform.position + (moveSpeed * Time.deltaTime * direction));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Bullet(Clone)")
         {
-            health -= 20;
+            TakeDamage(20);
             if (health <= 0)
             {
-                Destroy(gameObject);
+                Death();
             }
         }
         else
         if (collision.gameObject.name == "Bullet 1(Clone)")
         {
-            health -= 100;
+            TakeDamage(50);
             if (health <= 0)
             {
-                Destroy(gameObject);
+                Death();
             }
         }
         else
@@ -81,7 +81,16 @@ public abstract class Enemy : MonoBehaviour
                 player.PlayerHealth -= EnemyDamage;
             }           
         }
-    }    
+    }
+    protected virtual void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    protected virtual void Death()
+    {
+        Destroy(gameObject);
+    }
     private void IsAttack()
     {
         Attack = false;       
