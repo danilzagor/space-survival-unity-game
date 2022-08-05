@@ -22,7 +22,7 @@ public class CraftingSystem : MonoBehaviour
     
     private void Start()
     {
-        savingInv.InventoryForSaving = new int[16];
+        savingInv.InventoryForSaving = new int[25];
         InventoryLoading();
 
     }
@@ -35,12 +35,46 @@ public class CraftingSystem : MonoBehaviour
 
         }
     }
+    public void CraftTitaniumIgnot()
+    {
+        if (player.TitaniumOre >= 1)
+        {
+            player.TitaniumOre--;
+            CraftItem(referenceItem[9], 1, 9, 3f);
+
+
+        }
+    }
+    public void CraftGoldenIgnot()
+    {
+        if (player.GoldOre >= 1)
+        {
+            player.GoldOre--;
+            CraftItem(referenceItem[10], 1, 10, 3f);
+
+
+        }
+    }
     public void CraftCopperIgnot()
     {
         if (player.CoperOre >= 1)
         {
             player.CoperOre--;
             CraftItem(referenceItem[1], 1,1,3f);
+        }
+    }
+    public void CraftGoldenDust()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[10], out InventoryItem value))
+        {
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[10], 1);
+                savingInv.InventoryForSaving[10] -= 1;
+                CraftItem(referenceItem[13], 2, 13, 2f);
+
+            }
+
         }
     }
     public void CraftIronPlate()
@@ -66,6 +100,46 @@ public class CraftingSystem : MonoBehaviour
                 InventorySystem.Remove(referenceItem[1], 1);
                 savingInv.InventoryForSaving[1] -= 1;
                 CraftItem(referenceItem[3], 1,3,2f);
+            }
+
+        }
+    }
+    public void CraftTitaniumPlate()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[9], out InventoryItem value))
+        {
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[9], 1);
+                savingInv.InventoryForSaving[9] -= 1;
+                CraftItem(referenceItem[11], 1, 11, 2f);
+            }
+
+        }
+    }
+    public void CraftGoldenPlate()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[10], out InventoryItem value))
+        {
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[10], 1);
+                savingInv.InventoryForSaving[10] -= 1;
+                CraftItem(referenceItem[12], 1, 12, 2f);
+            }
+
+        }
+    }
+    public void CraftSemiconductor()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value))
+        {
+            if (value.stackSize >= 1 && player.CoalOre>1)
+            {
+                player.CoalOre--;
+                InventorySystem.Remove(referenceItem[13], 1);
+                savingInv.InventoryForSaving[13] -= 1;
+                CraftItem(referenceItem[16], 1, 16, 3f);
             }
 
         }
@@ -141,6 +215,50 @@ public class CraftingSystem : MonoBehaviour
                 InventorySystem.Remove(referenceItem[4], 1);
                 savingInv.InventoryForSaving[4] -= 1;
                 CraftItem(referenceItem[8], 1,8, 20f);
+            }
+
+        }
+    }
+    public void CraftChipLvl2()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[7], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[16], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[5], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[12], out InventoryItem value3))
+        {
+            if (value.stackSize >= 1 && value1.stackSize >= 5 && value2.stackSize >= 5 && value3.stackSize >= 1 )
+            {
+                InventorySystem.Remove(referenceItem[7], 1);
+                savingInv.InventoryForSaving[7] -= 1;
+                InventorySystem.Remove(referenceItem[16], 5);
+                savingInv.InventoryForSaving[16] -= 5;
+                InventorySystem.Remove(referenceItem[5], 5);
+                savingInv.InventoryForSaving[5] -= 5;
+                InventorySystem.Remove(referenceItem[12], 1);
+                savingInv.InventoryForSaving[12] -= 1;
+                CraftItem(referenceItem[14], 1, 14, 60f);
+            }
+
+        }
+    }
+    public void CraftMotorLvl2()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[16], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[11], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value3))
+        {
+            if (value.stackSize >= 1 && value1.stackSize >= 2 && value2.stackSize >= 2 && value3.stackSize >= 4)
+            {
+                InventorySystem.Remove(referenceItem[8], 1);
+                savingInv.InventoryForSaving[8] -= 1;
+                InventorySystem.Remove(referenceItem[16], 2);
+                savingInv.InventoryForSaving[16] -= 2;
+                InventorySystem.Remove(referenceItem[11], 2);
+                savingInv.InventoryForSaving[11] -= 2;
+                InventorySystem.Remove(referenceItem[13], 4);
+                savingInv.InventoryForSaving[13] -= 4;
+                CraftItem(referenceItem[15], 1, 15, 60f);
             }
 
         }
@@ -340,5 +458,20 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[22].text = savingInv.InventoryForSaving[2] + "/10";
         NumberOfItemsForCraft[23].text = savingInv.InventoryForSaving[3] + "/10";
         NumberOfItemsForCraft[24].text = savingInv.InventoryForSaving[8] + "/2";
+        NumberOfItemsForCraft[25].text = player.TitaniumOre + "/1";
+        NumberOfItemsForCraft[26].text = player.GoldOre + "/1";
+        NumberOfItemsForCraft[27].text = savingInv.InventoryForSaving[10] + "/1";
+        NumberOfItemsForCraft[28].text = savingInv.InventoryForSaving[9] + "/1";
+        NumberOfItemsForCraft[29].text = savingInv.InventoryForSaving[10] + "/1";
+        NumberOfItemsForCraft[30].text = player.CoalOre + "/1";
+        NumberOfItemsForCraft[31].text = savingInv.InventoryForSaving[13] + "/1";
+        NumberOfItemsForCraft[32].text = savingInv.InventoryForSaving[7] + "/1";
+        NumberOfItemsForCraft[33].text = savingInv.InventoryForSaving[16] + "/5";
+        NumberOfItemsForCraft[34].text = savingInv.InventoryForSaving[5] + "/5";
+        NumberOfItemsForCraft[35].text = savingInv.InventoryForSaving[12] + "/1";
+        NumberOfItemsForCraft[36].text = savingInv.InventoryForSaving[8] + "/1";
+        NumberOfItemsForCraft[37].text = savingInv.InventoryForSaving[16] + "/2";
+        NumberOfItemsForCraft[38].text = savingInv.InventoryForSaving[11] + "/2";
+        NumberOfItemsForCraft[39].text = savingInv.InventoryForSaving[13] + "/4";
     }
 }

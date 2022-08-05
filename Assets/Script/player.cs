@@ -48,6 +48,9 @@ public class player : MonoBehaviour
     private float nextFireTime;
     [SerializeField] float bulletForce = 20f;
     int i = 0; //for background animation
+    [SerializeField] private AudioSource EquipmentSound;
+    [SerializeField] private AudioClip[] DrillSound;
+    [SerializeField] private AudioClip[] WeaponSound;
     bool reloaded
     {
         get { return Time.time > nextFireTime; }
@@ -57,6 +60,11 @@ public class player : MonoBehaviour
     private void Awake()
     {
         PlayerGameObject = GetComponent<Transform>();
+        GoldOre = 100;
+        TitaniumOre = 100;
+        IronOre = 100;
+        CoalOre = 100;
+        CoperOre = 100;
     }
     void Start() 
     {        
@@ -162,6 +170,11 @@ public class player : MonoBehaviour
             //transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(moveDelta.x * 2, 0, 0), Time.deltaTime);
         }
     }
+    private void DrillEndSound()
+    {
+        EquipmentSound.clip = DrillSound[2];
+        EquipmentSound.Play();
+    }
     private void JoystickInteract()
     {
         float x = InteractJoystick.Horizontal;
@@ -170,6 +183,13 @@ public class player : MonoBehaviour
         {
             if (CurrentWeapon == 0)
             {
+                if (EquipmentSound.isPlaying == false)
+                {
+                    EquipmentSound.clip = DrillSound[1];
+                    EquipmentSound.Play();
+                }               
+                CancelInvoke("DrillEndSound");
+                Invoke("DrillEndSound",0.1f);
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(x,
                                 y), 1f, LayerMask.GetMask("Actor", "Blocking"));
                 if (hit.collider != null)
@@ -180,6 +200,7 @@ public class player : MonoBehaviour
             if (CurrentWeapon == 1 )
             {
                 ShootingSystem();
+
             }
             if (CurrentWeapon == 2)
             {
@@ -314,10 +335,20 @@ public class player : MonoBehaviour
             if (CurrentWeapon == 1)
             {
                 bul = Instantiate(Bullet, FirePoint.transform.position, FirePoint.rotation);
-            }else
+               
+                    EquipmentSound.clip = WeaponSound[0];
+                    EquipmentSound.Play();
+                
+            }
+            else
             if (CurrentWeapon == 2)
             {
                 bul = Instantiate(SniperBullet, FirePoint.transform.position, FirePoint.rotation);
+                if (EquipmentSound.isPlaying == false)
+                {
+                    EquipmentSound.clip = WeaponSound[1];
+                    EquipmentSound.Play();
+                }
             }
             Rigidbody2D rigidbody2D = bul.GetComponent<Rigidbody2D>();
             rigidbody2D.AddForce(FirePoint.up * bulletForce, ForceMode2D.Impulse);
