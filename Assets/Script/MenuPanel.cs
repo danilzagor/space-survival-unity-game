@@ -10,16 +10,44 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] AudioSource[] audioSources;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject DeathPanel;
+    [SerializeField] GameObject[] Joysticks;
+    public void Cheat()
+    {
+        player.GoldOre = 100;
+        player.TitaniumOre = 100;
+        player.IronOre = 100;
+        player.CoalOre = 100;
+        player.CoperOre = 100;
+        player.PlayerHealth = 100;
+        player.PlayerOxygen = player.MaxPlayerOxygen;
+        player.PlayerAmmo = 100;
+    }
     public void OpenCloseMenuPanel()
     {
         PanelIsOpen = !PanelIsOpen;
         Panel.SetActive(PanelIsOpen);
+
+        if (PanelIsOpen)
+        {
+            Joysticks[0].SetActive(false);
+            Joysticks[1].SetActive(false);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Joysticks[0].SetActive(true);
+            Joysticks[1].SetActive(true);
+        }
     }
     public void SettingsMenu()
     {
         PanelIsOpen = !PanelIsOpen;
         Panel.SetActive(PanelIsOpen);
+        Joysticks[0].SetActive(false);
+        Joysticks[1].SetActive(false);
         SettingsPanel.SetActive(true);
+        Time.timeScale = 0;
     }
     public void Back()
     {
@@ -31,6 +59,9 @@ public class MenuPanel : MonoBehaviour
     {
         PanelIsOpen = !PanelIsOpen;
         Panel.SetActive(PanelIsOpen);
+        Time.timeScale = 1;
+        Joysticks[0].SetActive(true);
+        Joysticks[1].SetActive(true);
     }
     public void BackInMenu()
     {
@@ -73,6 +104,7 @@ public class MenuPanel : MonoBehaviour
         Player.GetComponent<Rigidbody2D>().constraints= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         Player.GetComponent<Rigidbody2D>().constraints = 0;
         Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        
     }
    
     private void Update()
@@ -80,6 +112,7 @@ public class MenuPanel : MonoBehaviour
         if (player.PlayerHealth <= 0)
         {
             DeathPanel.SetActive(true);
+            
         }
     }
 }

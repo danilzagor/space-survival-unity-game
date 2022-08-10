@@ -10,18 +10,30 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject SettingsCanvas;
     [SerializeField] GameObject AuthorsCanvas;
     [SerializeField] AudioSource MenuMusic;
+    [SerializeField] GameObject NewGamePanel;
+    [SerializeField] GameObject ContinueButton;
+    int FirstTimeLaunch;
     public static int IsMute;
     private void Awake()
     {
         IsMute = PlayerPrefs.GetInt("IsMute");
+        FirstTimeLaunch = PlayerPrefs.GetInt("FirstTimeLaunch");
 
         if (IsMute == 0)
         {
-            MenuMusic.volume = 0.3f;
+            MenuMusic.volume = 1f;
         }else
         if (IsMute == 1)
         {
             MenuMusic.volume = 0;
+        }
+        NewGamePanel.SetActive(false);
+        if (FirstTimeLaunch == 0)
+        {
+            ContinueButton.SetActive(false);
+            FirstTimeLaunch = 1;
+            PlayerPrefs.SetInt("FirstTimeLaunch", FirstTimeLaunch);
+
         }
     }
     public void Continue()
@@ -32,6 +44,14 @@ public class Menu : MonoBehaviour
         IsNewGame = 0;
     }
     public void NewGame()
+    {
+        NewGamePanel.SetActive(true);
+    }
+    public void NewGameNo()
+    {
+        NewGamePanel.SetActive(false);
+    }
+    public void NewGameYes()
     {
         SceneManager.LoadScene("Game", LoadSceneMode.Single);
 

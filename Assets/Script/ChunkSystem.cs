@@ -17,18 +17,20 @@ public class ChunkSystem : MonoBehaviour
         foreach (GameObject Chunk in Chunks)
         {
             float distanceToChunk = Player.transform.position.magnitude - Chunk.transform.position.magnitude;
-            if (Player.transform.position.x * Chunk.transform.position.x > 0 &&
+            /*if (Player.transform.position.x * Chunk.transform.position.x > 0 &&
                 Player.transform.position.y * Chunk.transform.position.y > 0)
+            {*/
+
+                if ((Player.transform.position- Chunk.transform.position).magnitude>=32)//athf.Abs(distanceToChunk) > distanceThreshold
             {
-                if (Mathf.Abs(distanceToChunk) > distanceThreshold)
-                {
                     Chunk.SetActive(false);
                 }
                 else
                 {
                     Chunk.SetActive(true);
                 }
-            }/*else if(Mathf.Abs(Chunk.transform.position.x)< 16 || Mathf.Abs(Chunk.transform.position.y) < 16)
+            //}
+        /*else if(Mathf.Abs(Chunk.transform.position.x)< 16 || Mathf.Abs(Chunk.transform.position.y) < 16)
             {
                 if (Mathf.Abs(distanceToChunk) < 16)
                 {
@@ -36,7 +38,7 @@ public class ChunkSystem : MonoBehaviour
                 }
                 else Chunk.SetActive(false);
             }*/
-            else Chunk.SetActive(false);
+            //else Chunk.SetActive(false);
             
         }
     }

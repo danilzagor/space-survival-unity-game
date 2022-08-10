@@ -120,14 +120,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3336
+        y: 3334
         width: 603
-        height: 364
+        height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 3141e49c49618ad41a396e2148ad881c
@@ -141,14 +149,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2968
+        y: 2971
         width: 603
-        height: 368
+        height: 365
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: a93e2c979a0dc1941b657fb1a3697d63
@@ -162,14 +178,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2597
+        y: 2603
         width: 603
-        height: 370
+        height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 11cef9dc0c63c5346bef5d6bf050cbd3
@@ -183,14 +207,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2230
+        y: 2233
         width: 603
-        height: 367
+        height: 365
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 98cde9a778e773b40b754ab288e78090
@@ -204,35 +236,22 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1861
+        y: 1862
         width: 603
-        height: 366
+        height: 364
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf8ce96238252d342bc9e483e45f0a60
-      internalID: -2015619224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: asteroid_base_2_titan_br_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1493
-        width: 603
-        height: 367
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 02e565fe2067bb94599e4e25660fb381
@@ -242,39 +261,26 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: asteroid_base_2_titan_br_6
+      name: asteroid_base_2_titan_br_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 1121
+        y: 1496
         width: 603
-        height: 371
+        height: 364
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cd9a4d3fc6421b4d9c32554e755d202
-      internalID: 495882756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: asteroid_base_2_titan_br_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 745
-        width: 603
-        height: 376
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 490e53eb3dd276e4188e564a12aa2247
@@ -284,22 +290,72 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: asteroid_base_2_titan_br_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1122
+        width: 603
+        height: 368
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      physicsShape:
+      - - {x: 0, y: -182.5}
+        - {x: 301.5, y: 0}
+        - {x: 0, y: 182.5}
+        - {x: -301.5, y: 0}
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef87599c1895154699e6ecadc8fcda6
+      internalID: -2005982775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: asteroid_base_2_titan_br_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 370
+        y: 378
         width: 603
-        height: 373
+        height: 369
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ab64d4fde518ec41892ac0d8929c7b4
+      spriteID: 093679303e4ef6b46a6bf6cdce31e335
       internalID: -229629857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: asteroid_base_2_titan_br_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 756
+        width: 603
+        height: 363
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892ba774254eb5c429d76d077333ad64
+      internalID: 1696672903
       vertices: []
       indices: 
       edges: []
@@ -311,16 +367,16 @@ TextureImporter:
         x: 0
         y: 0
         width: 603
-        height: 370
+        height: 366
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eef87599c1895154699e6ecadc8fcda6
-      internalID: -2005982775
+      spriteID: 8d644ab46265d1f49b2c7cdd458f4cd8
+      internalID: -198853849
       vertices: []
       indices: 
       edges: []
@@ -336,16 +392,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      asteroid_base_2_titan_br_6: 495882756
+      asteroid_base_2_titan_br_6: -2005982775
       asteroid_base_2_titan_br_0: -1153170454
       asteroid_base_2_titan_br_1: 1318313100
       asteroid_base_2_titan_br_2: 1324109580
-      asteroid_base_2_titan_br_9: -2005982775
-      asteroid_base_2_titan_br_4: -2015619224
+      asteroid_base_2_titan_br_9: -198853849
+      asteroid_base_2_titan_br_4: -1131869179
       asteroid_base_2_titan_br_3: 2072705850
       asteroid_base_2_titan_br_8: -229629857
-      asteroid_base_2_titan_br_5: -1131869179
-      asteroid_base_2_titan_br_7: -1161086909
+      asteroid_base_2_titan_br_5: -1161086909
+      asteroid_base_2_titan_br_13: -1549867293
+      asteroid_base_2_titan_br_7: 1696672903
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

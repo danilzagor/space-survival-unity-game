@@ -14,8 +14,8 @@ public class Plasma : MonoBehaviour
         {
             if (player.PlayerHealth > 0)
             {
-                
-                player.PlayerHealth -= 15;
+
+                player.PlayerHealth -=15- (int)(15 * (CraftingSystem.LevelOfArmor * 0.1));
             }
         }
         Destroy(gameObject);

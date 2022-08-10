@@ -51,6 +51,10 @@ public class player : MonoBehaviour
     [SerializeField] private AudioSource EquipmentSound;
     [SerializeField] private AudioClip[] DrillSound;
     [SerializeField] private AudioClip[] WeaponSound;
+    bool DrillStartSound;
+    [SerializeField] private AudioSource JetpackSoundSource;
+    [SerializeField] private AudioClip[] JetpackSound;
+    bool JetpackStartSound;
     bool reloaded
     {
         get { return Time.time > nextFireTime; }
@@ -60,11 +64,6 @@ public class player : MonoBehaviour
     private void Awake()
     {
         PlayerGameObject = GetComponent<Transform>();
-        GoldOre = 100;
-        TitaniumOre = 100;
-        IronOre = 100;
-        CoalOre = 100;
-        CoperOre = 100;
     }
     void Start() 
     {        
@@ -72,19 +71,16 @@ public class player : MonoBehaviour
         boxCollider = GetComponent<CapsuleCollider2D>();
         Text = AsteroidHp;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         ShowUItext();
-        
+
         OxygenSystem();
         JoystickInteract();
         InvokeRepeating("BackgroundChange", 0.5f, 0.5f);
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         gameObject.GetComponent<Rigidbody2D>().constraints = 0;
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-    }
-    private void Update()
-    {
         if (InteractJoystick.Horizontal != 0 || InteractJoystick.Vertical != 0)
         {
 
@@ -92,6 +88,17 @@ public class player : MonoBehaviour
             PlayerSide();
         }
         else PlayerMovement();
+
+        TrailSound();
+
+
+    }
+    private void JetpackSoundStartStop()
+    {
+        JetpackStartSound = false;
+        JetpackSoundSource.loop = false;
+        JetpackSoundSource.clip = JetpackSound[2];
+        JetpackSoundSource.Play();
     }
     private void ShowUItext()
     {
@@ -120,6 +127,31 @@ public class player : MonoBehaviour
         }
 
     }
+    private void TrailSound()
+    {
+        if (traileffect.isVisible == true && (joystick.Horizontal!=0 || joystick.Vertical != 0))
+        {
+            
+            if (JetpackSoundSource.isPlaying == false && JetpackStartSound == false)
+            {
+                JetpackSoundSource.clip = JetpackSound[0];
+                JetpackSoundSource.Play();
+                JetpackStartSound = true;
+            }
+            else
+            if (JetpackSoundSource.isPlaying == false)
+            {
+
+                JetpackSoundSource.clip = JetpackSound[1];
+                JetpackSoundSource.Play();
+                JetpackSoundSource.loop = true;
+                
+            }
+            CancelInvoke("JetpackSoundStartStop");
+            Invoke("JetpackSoundStartStop", 0.1f);
+
+        }
+    }
     private void PlayerMovement()
     {
         float x = joystick.Horizontal;
@@ -130,6 +162,7 @@ public class player : MonoBehaviour
         {
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, -2);
             PlayerAnimationSprite(2);
+            
         }
         else
         if (moveDelta.y < 0 && Math.Abs(moveDelta.y)> Math.Abs(moveDelta.x))
@@ -141,6 +174,7 @@ public class player : MonoBehaviour
         {
             PlayerAnimationSprite(0);
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+            
         }
         else
         if (moveDelta.x > 0)
@@ -148,12 +182,14 @@ public class player : MonoBehaviour
             PlayerAnimationSprite(1);
             boxCollider.transform.localScale = Vector3.one;
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+            
         }
         else if (moveDelta.x < 0)
         {
             PlayerAnimationSprite(1);
             boxCollider.transform.localScale = new Vector3(-1, 1, 1);
             traileffect.transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+            
         }
         hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0,
             new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
@@ -169,12 +205,16 @@ public class player : MonoBehaviour
             transform.Translate(moveDelta.x * Time.deltaTime*2, 0, 0);
             //transform.position = Vector3.Lerp(transform.position, transform.position + new Vector3(moveDelta.x * 2, 0, 0), Time.deltaTime);
         }
+        
     }
     private void DrillEndSound()
     {
         EquipmentSound.clip = DrillSound[2];
+        EquipmentSound.loop = false;
+        DrillStartSound = false;
         EquipmentSound.Play();
     }
+
     private void JoystickInteract()
     {
         float x = InteractJoystick.Horizontal;
@@ -183,10 +223,18 @@ public class player : MonoBehaviour
         {
             if (CurrentWeapon == 0)
             {
+                if (EquipmentSound.isPlaying == false && DrillStartSound==false)
+                {
+                    EquipmentSound.clip = DrillSound[0];
+                    EquipmentSound.Play();
+                    DrillStartSound = true;
+                }
+                else
                 if (EquipmentSound.isPlaying == false)
                 {
                     EquipmentSound.clip = DrillSound[1];
                     EquipmentSound.Play();
+                    EquipmentSound.loop=true;
                 }               
                 CancelInvoke("DrillEndSound");
                 Invoke("DrillEndSound",0.1f);
@@ -199,12 +247,11 @@ public class player : MonoBehaviour
             } else
             if (CurrentWeapon == 1 )
             {
-                ShootingSystem();
-
+                    ShootingSystem();               
             }
             if (CurrentWeapon == 2)
             {
-                ShootingSystem();
+                    ShootingSystem();               
             }
 
         }
@@ -217,15 +264,15 @@ public class player : MonoBehaviour
                 hit.transform.GetComponent<Asteroid>().AsteroidHealth -= MiningSpeed;
             if (hit.transform.GetComponent<Asteroid>().AsteroidHealth <= 1)
             {
-                     if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron_9") IronOre++;
+                if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_iron_9") IronOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_copper_9") CoperOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold_9") GoldOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan_9") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_gold_9" && CraftingSystem.LevelOfDrill==3) GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_titan_9" && CraftingSystem.LevelOfDrill == 3) TitaniumOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_1_coal_9") CoalOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_iron_br_9") IronOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_copper_br_9") CoperOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_gold_br_9") GoldOre++;
-                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_titan_br_9") TitaniumOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_gold_br_9" && CraftingSystem.LevelOfDrill == 3) GoldOre++;
+                else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_titan_br_9" && CraftingSystem.LevelOfDrill == 3) TitaniumOre++;
                 else if (hit.transform.GetComponent<SpriteRenderer>().sprite.name == "asteroid_base_2_coal_br_9") CoalOre++;
                 Text.SetActive(false);
                 Destroy(target);

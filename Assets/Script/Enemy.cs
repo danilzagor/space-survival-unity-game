@@ -75,10 +75,11 @@ public abstract class Enemy : MonoBehaviour
         {
             if (player.PlayerHealth > 0)
             {
+                SoundInAttack();
                 Attack = true;
                 Invoke("IsAttack", 1f);
                 rb.MovePosition((Vector2)transform.position - (2 * moveSpeed * Time.deltaTime * direction));
-                player.PlayerHealth -= EnemyDamage;
+                player.PlayerHealth -=  EnemyDamage-(int)(EnemyDamage*(CraftingSystem.LevelOfArmor*0.1));
             }           
         }
     }
@@ -86,7 +87,10 @@ public abstract class Enemy : MonoBehaviour
     {
         health -= damage;
     }
-
+    protected virtual void SoundInAttack()
+    {
+        
+    }
     protected virtual void Death()
     {
         Destroy(gameObject);

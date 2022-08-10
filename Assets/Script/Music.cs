@@ -7,6 +7,7 @@ public class Music : MonoBehaviour
     public AudioClip[] music;
     private AudioSource currenttrack;
     private int numberoftrack=0;
+    private int TempTrack=0;
     private void Start()
 
     {
@@ -14,7 +15,7 @@ public class Music : MonoBehaviour
         int isMute = PlayerPrefs.GetInt("IsMute");
         if (isMute == 0)
         {
-            currenttrack.volume = 0.3f;
+            currenttrack.volume = 1f;
         }
         if (isMute == 1)
         {
@@ -25,17 +26,17 @@ public class Music : MonoBehaviour
     private void Update()
     {
 
-            if (currenttrack.isPlaying == false)
+            if (currenttrack.isPlaying == false && currenttrack.clip!=music[TempTrack])
             {
-                currenttrack.clip = music[numberoftrack];
-                currenttrack.Play();
+                TempTrack = Random.Range(0, music.Length + 1);
+                currenttrack.clip = music[TempTrack];
+                currenttrack.PlayDelayed(Random.Range(0f,80f));
                 if (numberoftrack == music.Length-1)
                 {
                     numberoftrack = 0;
                 }
                 else numberoftrack++;
-            }
-        
-        
+                
+            }    
     }
 }

@@ -12,19 +12,23 @@ public class SavingInv
 }
 public class CraftingSystem : MonoBehaviour
 {
+    [SerializeField] GameObject[] Upgrades;
     public InventoryItemData[] referenceItem;
     public InventorySystem InventorySystem;
     public SavingInv savingInv ;
     public GameObject SlotPrefab;
     public GameObject Inventory;
+    public static int LevelOfDrill=1;
+    public static int LevelOfArmor=1;
     [SerializeField] private GameObject CraftingProcess;
     [SerializeField] private Text[] NumberOfItemsForCraft = new Text[13];
-    
+    private float DelayForCrafting;
+    private float DelayForEquipment;
+
     private void Start()
     {
         savingInv.InventoryForSaving = new int[25];
-        InventoryLoading();
-
+        InventoryLoading();       
     }
     public void CraftIronIgnot()
     {
@@ -134,7 +138,7 @@ public class CraftingSystem : MonoBehaviour
     {
         if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value))
         {
-            if (value.stackSize >= 1 && player.CoalOre>1)
+            if (value.stackSize >= 1 && player.CoalOre>=1)
             {
                 player.CoalOre--;
                 InventorySystem.Remove(referenceItem[13], 1);
@@ -143,6 +147,22 @@ public class CraftingSystem : MonoBehaviour
             }
 
         }
+    }
+    public void CraftAmmo()
+    {
+
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value))
+        {
+            if (player.CoalOre >= 1 && value.stackSize >= 2)
+            {
+                InventorySystem.Remove(referenceItem[2], 2);
+                savingInv.InventoryForSaving[2] -= 2;
+                player.CoalOre -= 1;
+                StartCoroutine(EquipmentCoroutine(2f, 6));
+
+            }
+        }
+        
     }
     public void CraftIronBar()
     {
@@ -285,6 +305,72 @@ public class CraftingSystem : MonoBehaviour
 
         }
     }
+    public void CraftDrillLvl3()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[4], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value3))
+        {
+            if (value.stackSize >= 6 && value1.stackSize >= 10 && value2.stackSize >= 10 && value3.stackSize >= 2 && LevelOfDrill != 3)
+            {
+                InventorySystem.Remove(referenceItem[4], 6);
+                savingInv.InventoryForSaving[4] -= 6;
+                InventorySystem.Remove(referenceItem[2], 10);
+                savingInv.InventoryForSaving[2] -= 10;
+                InventorySystem.Remove(referenceItem[3], 10);
+                savingInv.InventoryForSaving[3] -= 10;
+                InventorySystem.Remove(referenceItem[8], 2);
+                savingInv.InventoryForSaving[8] -= 2;
+                StartCoroutine(EquipmentCoroutine(120f, 3));
+            }
+
+        }
+    }
+    public void CraftBallonLvl3()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[11], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[15], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[14], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value3))
+        {
+            if (value.stackSize >= 5 && value1.stackSize >= 2 && value2.stackSize >= 1 && value3.stackSize >= 10 && player.MaxPlayerOxygen == 125)
+            {
+                InventorySystem.Remove(referenceItem[11], 5);
+                savingInv.InventoryForSaving[11] -= 5;
+                InventorySystem.Remove(referenceItem[15], 2);
+                savingInv.InventoryForSaving[15] -= 2;
+                InventorySystem.Remove(referenceItem[14], 1);
+                savingInv.InventoryForSaving[14] -= 1;
+                InventorySystem.Remove(referenceItem[13], 10);
+                savingInv.InventoryForSaving[13] -= 10;
+                StartCoroutine(EquipmentCoroutine(120f, 4));
+            }
+
+        }
+    }
+    public void CraftArmorLvl3()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[11], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[15], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[14], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[12], out InventoryItem value3))
+        {
+            if (value.stackSize >= 10 && value1.stackSize >= 1 && value2.stackSize >= 1 && value3.stackSize >= 10 && LevelOfArmor!=3)
+            {
+                InventorySystem.Remove(referenceItem[11], 10);
+                savingInv.InventoryForSaving[11] -= 10;
+                InventorySystem.Remove(referenceItem[15], 1);
+                savingInv.InventoryForSaving[15] -= 1;
+                InventorySystem.Remove(referenceItem[14], 1);
+                savingInv.InventoryForSaving[14] -= 1;
+                InventorySystem.Remove(referenceItem[12], 10);
+                savingInv.InventoryForSaving[12] -= 10;
+                StartCoroutine(EquipmentCoroutine(120f, 5));
+            }
+
+        }
+    }
     public void CraftBallonLvl2()
     {
         if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value)
@@ -384,8 +470,9 @@ public class CraftingSystem : MonoBehaviour
     }
     IEnumerator CraftingTiming(float Time, InventoryItemData referenceItem, int a, int b)
     {
-        CraftingProcess.SetActive(true);
-        yield return new WaitForSeconds(Time);
+        //CraftingProcess.SetActive(false);
+        DelayForCrafting += Time;
+        yield return new WaitForSeconds(DelayForCrafting);
         for (var i = Inventory.transform.childCount - 1; i >= 0; i--)
         {
             Destroy(Inventory.transform.GetChild(i).gameObject);
@@ -394,6 +481,7 @@ public class CraftingSystem : MonoBehaviour
         LoadingItems(referenceItem, a, b);
         InventorySaving();
         CraftingProcess.SetActive(false);
+        DelayForCrafting -= Time;
     }
     IEnumerator EquipmentCoroutine(float Time,int Type)
     {
@@ -410,12 +498,16 @@ public class CraftingSystem : MonoBehaviour
             UIInventorySlot slot = obj.GetComponent<UIInventorySlot>();
             slot.Set(item);
         }
-        CraftingProcess.SetActive(true);
-        yield return new WaitForSeconds(Time);
+        DelayForEquipment += Time;
+        //CraftingProcess.SetActive(false);
+        yield return new WaitForSeconds(DelayForEquipment);
+        DelayForEquipment -= Time;
         if (Type == 0)
         {
             player.MiningSpeed = 0.7f;
             PlayerPrefs.SetFloat("MiningSpeed", player.MiningSpeed);
+            LevelOfDrill = 2;
+            PlayerPrefs.SetInt("LevelOfDrill", LevelOfDrill);
         }
         else if(Type == 1)
         {
@@ -424,15 +516,77 @@ public class CraftingSystem : MonoBehaviour
         }
         else if (Type == 2)
         {
-            player.MaxPlayerHealth = 125;
             PlayerPrefs.SetInt("MaxPlayerHealth", player.MaxPlayerHealth);
-            player.PlayerHealth = 125;
+            LevelOfArmor = 2;
+            PlayerPrefs.SetInt("LevelOfArmor", LevelOfArmor);
         }
-        
+        else if (Type == 3)
+        {
+            LevelOfDrill = 3;
+        }
+        else if (Type == 4)
+        {
+            player.MaxPlayerOxygen = 150;
+            PlayerPrefs.SetInt("MaxPlayerOxygen", player.MaxPlayerOxygen);
+        }
+        else if (Type == 5)
+        {
+            LevelOfArmor = 3;
+        }
+        else if (Type == 6)
+        {
+            player.PlayerAmmo += 50;
+        }
         CraftingProcess.SetActive(false);
     }
     private void FixedUpdate()
     {
+        if (LevelOfArmor == 1)
+        {
+            Upgrades[0].SetActive(true);
+            Upgrades[1].SetActive(false);
+        }
+        else if (LevelOfArmor == 2)
+        {
+            Upgrades[0].SetActive(false);
+            Upgrades[1].SetActive(true);
+        }else
+        {
+            Upgrades[0].SetActive(false);
+            Upgrades[1].SetActive(false);
+        }
+        if (player.MaxPlayerOxygen == 100)
+        {
+            Upgrades[2].SetActive(true);
+            Upgrades[3].SetActive(false);
+        }
+        else if (player.MaxPlayerOxygen == 125)
+        {
+            Upgrades[2].SetActive(false);
+            Upgrades[3].SetActive(true);
+        }
+        else
+        {
+            Upgrades[2].SetActive(false);
+            Upgrades[3].SetActive(false);
+        }
+        
+        if (LevelOfDrill == 1)
+        {
+            Upgrades[4].SetActive(true);
+            Upgrades[5].SetActive(false);
+        }
+        else if (LevelOfDrill == 2)
+        {
+            Upgrades[4].SetActive(false);
+            Upgrades[5].SetActive(true);
+        }
+        else
+        {
+            Upgrades[4].SetActive(false);
+            Upgrades[5].SetActive(false);
+        }
+
         NumberOfItemsForCraft[0].text = player.IronOre + "/1";
         NumberOfItemsForCraft[1].text = player.CoperOre + "/1";
         NumberOfItemsForCraft[2].text = savingInv.InventoryForSaving[0] + "/1";
@@ -473,5 +627,20 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[37].text = savingInv.InventoryForSaving[16] + "/2";
         NumberOfItemsForCraft[38].text = savingInv.InventoryForSaving[11] + "/2";
         NumberOfItemsForCraft[39].text = savingInv.InventoryForSaving[13] + "/4";
+
+        NumberOfItemsForCraft[40].text = savingInv.InventoryForSaving[4] + "/6";
+        NumberOfItemsForCraft[41].text = savingInv.InventoryForSaving[2] + "/10";
+        NumberOfItemsForCraft[42].text = savingInv.InventoryForSaving[3] + "/10";
+        NumberOfItemsForCraft[43].text = savingInv.InventoryForSaving[8] + "/2";
+        NumberOfItemsForCraft[44].text = savingInv.InventoryForSaving[11] + "/5";
+        NumberOfItemsForCraft[45].text = savingInv.InventoryForSaving[15] + "/2";
+        NumberOfItemsForCraft[46].text = savingInv.InventoryForSaving[14] + "/1";
+        NumberOfItemsForCraft[47].text = savingInv.InventoryForSaving[13] + "/10";
+        NumberOfItemsForCraft[48].text = savingInv.InventoryForSaving[11] + "/10";
+        NumberOfItemsForCraft[49].text = savingInv.InventoryForSaving[15] + "/1";
+        NumberOfItemsForCraft[50].text = savingInv.InventoryForSaving[14] + "/1";
+        NumberOfItemsForCraft[51].text = savingInv.InventoryForSaving[12] + "/10";
+        NumberOfItemsForCraft[52].text = player.CoalOre + "/1";
+        NumberOfItemsForCraft[53].text = savingInv.InventoryForSaving[2] + "/2";
     }
 }

@@ -9,14 +9,15 @@ public class EyeGuy : Enemy
     [SerializeField] private GameObject Bullet;
     [SerializeField] private AudioClip[] Sound;
     private float nextFireTime;
-
+    public static Transform Transformobject;
     protected override void FixedUpdate()
     {
-        direction = playerTransform.position - transform.position;
+        direction =playerTransform.position - transform.position;
         if (direction.magnitude <= distanceToAttack)
         {
 
             FindWay(direction);
+            Invoke("CallSoundFunc", 6f);
             if (direction.magnitude <= distanceToAttack && direction.magnitude >= 2)
             {
                 IsInAttack();
@@ -30,9 +31,33 @@ public class EyeGuy : Enemy
         }
 
     }
+    private void CallSoundFunc()
+    {
+        if (GetComponentInChildren<AudioSource>().isPlaying == false)
+        {
+            CancelInvoke("CallSoundFunc");
+            GetComponentInChildren<AudioSource>().clip = Sound[Random.Range(1, 4)];
+            GetComponentInChildren<AudioSource>().Play();
+        }
+        
+    }       
+    private void SoundFunc(int typeOfSound)
+    {
+        if (direction.magnitude <= 3)
+        {
+            GetComponentInChildren<AudioSource>().clip = (Sound[Random.Range(typeOfSound, typeOfSound + 2)]);
+            GetComponentInChildren<AudioSource>().Play();
+        }
+
+    }
+    protected override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        SoundFunc(4);
+    }
     private void Update()
     {
-        if (Bullet.activeInHierarchy)
+        if (Bullet.activeInHierarchy )
         {
             Bullet.transform.localScale = new Vector3(1, direction.magnitude / -12, 1);
         }
@@ -45,10 +70,13 @@ public class EyeGuy : Enemy
 
     private void Shoot()
     {
-
+        //Invoke("CallSoundFunc", 6f);
         float TimeToShoot = 4f;
         if (reloaded)
         {
+            //SoundFunc(7);
+            GetComponentInChildren<AudioSource>().clip = (Sound[6]);
+            GetComponentInChildren<AudioSource>().Play();
             Bullet.SetActive(true);            
             Invoke("TurnOffShoot", 1f);
             nextFireTime = Time.time + TimeToShoot;
@@ -58,6 +86,8 @@ public class EyeGuy : Enemy
     private void TurnOffShoot()
     {
         Bullet.SetActive(false);
+        GetComponentInChildren<AudioSource>().clip = (Sound[8]);
+        GetComponentInChildren<AudioSource>().Play();
     }
     private void ChangeAnimation()
     {
@@ -71,5 +101,14 @@ public class EyeGuy : Enemy
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = AnimationSprite[1];
         }
+    }
+    protected override void Death()
+    {
+        AudioSource TempAudio = Instantiate(GetComponentInChildren<AudioSource>(), transform.position, Quaternion.identity);
+        TempAudio.clip = (Sound[0]);
+        TempAudio.Play();
+        Destroy(TempAudio, 2f);
+        //GetComponent<Animator>().Play("JellyBobDeath");
+        Destroy(gameObject);
     }
 }

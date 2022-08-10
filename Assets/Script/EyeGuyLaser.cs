@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EyeGuyLaser : MonoBehaviour
 {
+    [SerializeField] AudioClip Sound;
+    [SerializeField] AudioSource a;
     int k = 0;
+    
     private void OnTriggerStay2D(Collider2D other)
     {
 
@@ -16,7 +19,18 @@ public class EyeGuyLaser : MonoBehaviour
                 k = 0;
             }
             else k++;
-           
+
         }
+
+    }
+    private void FixedUpdate()
+    {
+        
+        if (a.isPlaying == false)
+        {
+            a.clip = Sound;
+            a.Play();
+        }
+        
     }
 }
