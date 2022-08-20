@@ -18,6 +18,8 @@ public class MenuPanel : MonoBehaviour
         player.IronOre = 100;
         player.CoalOre = 100;
         player.CoperOre = 100;
+        player.AlienRemains = 100;
+        player.Medicine = 100;
         player.PlayerHealth = 100;
         player.PlayerOxygen = player.MaxPlayerOxygen;
         player.PlayerAmmo = 100;
@@ -113,6 +115,20 @@ public class MenuPanel : MonoBehaviour
         {
             DeathPanel.SetActive(true);
             
+        }
+    }
+    public void UseMedicine()
+    {
+        if (player.Medicine > 0 && player.PlayerHealth!=100)
+        {
+            player.Medicine--;
+            if (player.PlayerHealth + 25 <= 100)
+            {
+                player.PlayerHealth += 25;
+            }
+            else player.PlayerHealth = 100;
+
+
         }
     }
 }

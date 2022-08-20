@@ -93,7 +93,10 @@ public abstract class Enemy : MonoBehaviour
     }
     protected virtual void Death()
     {
-        Destroy(gameObject);
+        if (Random.Range(0, 4) == 1)
+        {
+            player.AlienRemains++;
+        }
     }
     private void IsAttack()
     {

@@ -13,6 +13,7 @@ public class SaveLoadSystem : MonoBehaviour
             player.CoalOre = PlayerPrefs.GetInt("CoalOre");
             player.GoldOre = PlayerPrefs.GetInt("GoldOre");
             player.TitaniumOre = PlayerPrefs.GetInt("TitaniumOre");
+            player.AlienRemains = PlayerPrefs.GetInt("AlienRemains");
             player.PlayerHealth = PlayerPrefs.GetInt("PlayerHealth");
             player.PlayerOxygen = PlayerPrefs.GetInt("PlayerOxygen");
             player.MaxPlayerOxygen = PlayerPrefs.GetInt("MaxPlayerOxygen");
@@ -28,7 +29,8 @@ public class SaveLoadSystem : MonoBehaviour
             {
                 CraftingSystem.LevelOfArmor =1;
             }
-            player.PlayerAmmo= PlayerPrefs.GetInt("PlayerAmmo");
+            player.PlayerAmmo = PlayerPrefs.GetInt("PlayerAmmo");
+            player.Medicine = PlayerPrefs.GetInt("Medicine");
 
         }
         else
@@ -42,8 +44,18 @@ public class SaveLoadSystem : MonoBehaviour
             player.MiningSpeed = 0.3f;
             PlayerPrefs.SetFloat("MiningSpeed", player.MiningSpeed);
             CraftingSystem.LevelOfDrill = 1;
+            PlayerPrefs.SetFloat("MiningSpeed", player.MiningSpeed);
+            PlayerPrefs.SetInt("LevelOfDrill", CraftingSystem.LevelOfDrill);
             CraftingSystem.LevelOfArmor = 1;
+            PlayerPrefs.SetInt("LevelOfArmor", CraftingSystem.LevelOfArmor);
             player.PlayerAmmo = 100;
+            player.IronOre = 0;
+            player.CoperOre = 0;
+            player.CoalOre = 0;
+            player.TitaniumOre = 0;
+            player.GoldOre = 0;
+            player.AlienRemains = 0;
+            player.Medicine = 0;
         }
         
     }
@@ -58,6 +70,7 @@ public class SaveLoadSystem : MonoBehaviour
         PlayerPrefs.SetInt("PlayerHealth", player.PlayerHealth);
         PlayerPrefs.SetInt("PlayerOxygen", player.PlayerOxygen);
         PlayerPrefs.SetInt("PlayerAmmo", player.PlayerAmmo);
-
+        PlayerPrefs.SetInt("AlienRemains", player.AlienRemains);
+        PlayerPrefs.SetInt("Medicine", player.Medicine);
     }
 }

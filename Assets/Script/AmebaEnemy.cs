@@ -5,8 +5,9 @@ using UnityEngine;
 public class AmebaEnemy : Enemy
 {
     
-    /*public override void MimicFunc()
+    protected override void Death()
     {
-        
-    }*/
+        base.Death();
+        Destroy(gameObject);
+    }
 }

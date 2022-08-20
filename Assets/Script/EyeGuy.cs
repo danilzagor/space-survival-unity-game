@@ -109,6 +109,7 @@ public class EyeGuy : Enemy
         TempAudio.Play();
         Destroy(TempAudio, 2f);
         //GetComponent<Animator>().Play("JellyBobDeath");
+        base.Death();
         Destroy(gameObject);
     }
 }

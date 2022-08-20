@@ -32,11 +32,15 @@ public class player : MonoBehaviour
     public static int TitaniumOre;
     public static int GoldOre;
     public static int CoalOre;
+    public static int AlienRemains;
+    public static int Medicine;
     [SerializeField] private Text IronOreText;
     [SerializeField] private Text CoperOreText;
     [SerializeField] private Text TitaniumOreText;
     [SerializeField] private Text GoldOreText;
     [SerializeField] private Text CoalOreText;
+    [SerializeField] private Text AlienRemainsText;
+    [SerializeField] private Text MedicineText;
     [SerializeField] private SpriteRenderer Background;
     [SerializeField] private Sprite[] background;
     [SerializeField] private GameObject AsteroidHp;
@@ -110,6 +114,8 @@ public class player : MonoBehaviour
         TitaniumOreText.text = "" + TitaniumOre;
         GoldOreText.text = "" + GoldOre;
         CoalOreText.text = "" + CoalOre;
+        AlienRemainsText.text = "" + AlienRemains;
+        MedicineText.text = "" + Medicine;
     }
     private void OxygenSystem()
     {

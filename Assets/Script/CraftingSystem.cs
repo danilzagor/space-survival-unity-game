@@ -164,6 +164,24 @@ public class CraftingSystem : MonoBehaviour
         }
         
     }
+    public void CraftMedicine()
+    {
+
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value) && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value1))
+        {
+            if (value.stackSize >= 1 && value1.stackSize >= 1 && player.AlienRemains >= 3 && player.Medicine<3)
+            {
+                InventorySystem.Remove(referenceItem[2], 1);
+                savingInv.InventoryForSaving[2] -= 1;
+                InventorySystem.Remove(referenceItem[3], 1);
+                savingInv.InventoryForSaving[3] -= 1;
+                player.AlienRemains -= 3;
+                StartCoroutine(EquipmentCoroutine(10f, 7));
+            }
+
+        }
+
+    }
     public void CraftIronBar()
     {
         if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[0], out InventoryItem value))
@@ -537,6 +555,10 @@ public class CraftingSystem : MonoBehaviour
         {
             player.PlayerAmmo += 50;
         }
+        else if (Type == 7)
+        {
+            player.Medicine += 1;
+        }
         CraftingProcess.SetActive(false);
     }
     private void FixedUpdate()
@@ -642,5 +664,9 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[51].text = savingInv.InventoryForSaving[12] + "/10";
         NumberOfItemsForCraft[52].text = player.CoalOre + "/1";
         NumberOfItemsForCraft[53].text = savingInv.InventoryForSaving[2] + "/2";
+
+        NumberOfItemsForCraft[54].text = player.AlienRemains + "/3";
+        NumberOfItemsForCraft[55].text = savingInv.InventoryForSaving[2] + "/1";
+        NumberOfItemsForCraft[56].text = savingInv.InventoryForSaving[3] + "/1";
     }
 }

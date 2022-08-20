@@ -28,7 +28,7 @@ public class Music : MonoBehaviour
 
             if (currenttrack.isPlaying == false && currenttrack.clip!=music[TempTrack])
             {
-                TempTrack = Random.Range(0, music.Length + 1);
+                TempTrack = Random.Range(0, music.Length - 1);
                 currenttrack.clip = music[TempTrack];
                 currenttrack.PlayDelayed(Random.Range(0f,80f));
                 if (numberoftrack == music.Length-1)
