@@ -28,43 +28,63 @@ public class CraftingSystem : MonoBehaviour
     private void Start()
     {
         savingInv.InventoryForSaving = new int[25];
-        InventoryLoading();       
+        if (Menu.IsNewGame == 0)
+        {
+            InventoryLoading();
+        }
+        InventorySaving();
     }
     public void CraftIronIgnot()
     {
-        if (player.IronOre >= 1)
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[17], out InventoryItem value))
         {
-            player.IronOre--;
-            CraftItem(referenceItem[0],1,0,3f);
+            if (value.stackSize >= 1)
+            {
+                //player.IronOre--;
+                InventorySystem.Remove(referenceItem[17], 1);
+                savingInv.InventoryForSaving[17] -= 1;
+                CraftItem(referenceItem[0], 1, 0, 3f);
+            }
+            
 
         }
     }
     public void CraftTitaniumIgnot()
     {
-        if (player.TitaniumOre >= 1)
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[21], out InventoryItem value))
         {
-            player.TitaniumOre--;
-            CraftItem(referenceItem[9], 1, 9, 3f);
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[21], 1);
+                savingInv.InventoryForSaving[21] -= 1;
+                CraftItem(referenceItem[9], 1, 9, 3f);
 
-
+            }
         }
     }
     public void CraftGoldenIgnot()
     {
-        if (player.GoldOre >= 1)
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[22], out InventoryItem value))
         {
-            player.GoldOre--;
-            CraftItem(referenceItem[10], 1, 10, 3f);
-
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[22], 1);
+                savingInv.InventoryForSaving[22] -= 1;
+                CraftItem(referenceItem[10], 1, 10, 3f);
+            }
 
         }
     }
     public void CraftCopperIgnot()
     {
-        if (player.CoperOre >= 1)
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[18], out InventoryItem value))
         {
-            player.CoperOre--;
-            CraftItem(referenceItem[1], 1,1,3f);
+            if (value.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[18], 1);
+                savingInv.InventoryForSaving[18] -= 1;
+                CraftItem(referenceItem[1], 1, 1, 3f);
+            }
         }
     }
     public void CraftGoldenDust()
@@ -136,11 +156,13 @@ public class CraftingSystem : MonoBehaviour
     }
     public void CraftSemiconductor()
     {
-        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value))
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[13], out InventoryItem value) 
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[19], out InventoryItem value1))
         {
-            if (value.stackSize >= 1 && player.CoalOre>=1)
+            if (value.stackSize >= 1 && value1.stackSize>=1)
             {
-                player.CoalOre--;
+                InventorySystem.Remove(referenceItem[19], 1);
+                savingInv.InventoryForSaving[19] -= 1;
                 InventorySystem.Remove(referenceItem[13], 1);
                 savingInv.InventoryForSaving[13] -= 1;
                 CraftItem(referenceItem[16], 1, 16, 3f);
@@ -151,13 +173,15 @@ public class CraftingSystem : MonoBehaviour
     public void CraftAmmo()
     {
 
-        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value))
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[19], out InventoryItem value1))
         {
-            if (player.CoalOre >= 1 && value.stackSize >= 2)
+            if (value1.stackSize >= 1 && value.stackSize >= 2)
             {
                 InventorySystem.Remove(referenceItem[2], 2);
                 savingInv.InventoryForSaving[2] -= 2;
-                player.CoalOre -= 1;
+                InventorySystem.Remove(referenceItem[19], 1);
+                savingInv.InventoryForSaving[19] -= 1;
                 StartCoroutine(EquipmentCoroutine(2f, 6));
 
             }
@@ -167,15 +191,18 @@ public class CraftingSystem : MonoBehaviour
     public void CraftMedicine()
     {
 
-        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value) && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value1))
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value) 
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value2))
         {
-            if (value.stackSize >= 1 && value1.stackSize >= 1 && player.AlienRemains >= 3 && player.Medicine<3)
+            if (value.stackSize >= 1 && value1.stackSize >= 1 && value2.stackSize >= 3 && player.Medicine<3)
             {
                 InventorySystem.Remove(referenceItem[2], 1);
                 savingInv.InventoryForSaving[2] -= 1;
                 InventorySystem.Remove(referenceItem[3], 1);
                 savingInv.InventoryForSaving[3] -= 1;
-                player.AlienRemains -= 3;
+                InventorySystem.Remove(referenceItem[20], 3);
+                savingInv.InventoryForSaving[20] -= 3;
                 StartCoroutine(EquipmentCoroutine(10f, 7));
             }
 
@@ -488,14 +515,23 @@ public class CraftingSystem : MonoBehaviour
     }
     IEnumerator CraftingTiming(float Time, InventoryItemData referenceItem, int a, int b)
     {
-        //CraftingProcess.SetActive(false);
-        DelayForCrafting += Time;
-        yield return new WaitForSeconds(DelayForCrafting);
         for (var i = Inventory.transform.childCount - 1; i >= 0; i--)
         {
             Destroy(Inventory.transform.GetChild(i).gameObject);
 
         }
+        foreach (InventoryItem item in InventorySystem.inventory)
+        {
+
+            GameObject obj = Instantiate(SlotPrefab);
+            obj.transform.SetParent(Inventory.transform, false);
+            UIInventorySlot slot = obj.GetComponent<UIInventorySlot>();
+            slot.Set(item);
+        }
+        //CraftingProcess.SetActive(false);
+        DelayForCrafting += Time;
+        yield return new WaitForSeconds(DelayForCrafting);
+        
         LoadingItems(referenceItem, a, b);
         InventorySaving();
         CraftingProcess.SetActive(false);
@@ -609,8 +645,8 @@ public class CraftingSystem : MonoBehaviour
             Upgrades[5].SetActive(false);
         }
 
-        NumberOfItemsForCraft[0].text = player.IronOre + "/1";
-        NumberOfItemsForCraft[1].text = player.CoperOre + "/1";
+        NumberOfItemsForCraft[0].text = savingInv.InventoryForSaving[17] + "/1";
+        NumberOfItemsForCraft[1].text = savingInv.InventoryForSaving[18] + "/1";
         NumberOfItemsForCraft[2].text = savingInv.InventoryForSaving[0] + "/1";
         NumberOfItemsForCraft[3].text = savingInv.InventoryForSaving[1] + "/1";
         NumberOfItemsForCraft[4].text = savingInv.InventoryForSaving[0] + "/1";
@@ -634,12 +670,12 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[22].text = savingInv.InventoryForSaving[2] + "/10";
         NumberOfItemsForCraft[23].text = savingInv.InventoryForSaving[3] + "/10";
         NumberOfItemsForCraft[24].text = savingInv.InventoryForSaving[8] + "/2";
-        NumberOfItemsForCraft[25].text = player.TitaniumOre + "/1";
-        NumberOfItemsForCraft[26].text = player.GoldOre + "/1";
+        NumberOfItemsForCraft[25].text = savingInv.InventoryForSaving[21] + "/1";
+        NumberOfItemsForCraft[26].text = savingInv.InventoryForSaving[22] + "/1";
         NumberOfItemsForCraft[27].text = savingInv.InventoryForSaving[10] + "/1";
         NumberOfItemsForCraft[28].text = savingInv.InventoryForSaving[9] + "/1";
         NumberOfItemsForCraft[29].text = savingInv.InventoryForSaving[10] + "/1";
-        NumberOfItemsForCraft[30].text = player.CoalOre + "/1";
+        NumberOfItemsForCraft[30].text = savingInv.InventoryForSaving[19] + "/1";
         NumberOfItemsForCraft[31].text = savingInv.InventoryForSaving[13] + "/1";
         NumberOfItemsForCraft[32].text = savingInv.InventoryForSaving[7] + "/1";
         NumberOfItemsForCraft[33].text = savingInv.InventoryForSaving[16] + "/5";
@@ -662,11 +698,59 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[49].text = savingInv.InventoryForSaving[15] + "/1";
         NumberOfItemsForCraft[50].text = savingInv.InventoryForSaving[14] + "/1";
         NumberOfItemsForCraft[51].text = savingInv.InventoryForSaving[12] + "/10";
-        NumberOfItemsForCraft[52].text = player.CoalOre + "/1";
+        NumberOfItemsForCraft[52].text = savingInv.InventoryForSaving[19] + "/1";
         NumberOfItemsForCraft[53].text = savingInv.InventoryForSaving[2] + "/2";
 
-        NumberOfItemsForCraft[54].text = player.AlienRemains + "/3";
+        NumberOfItemsForCraft[54].text = savingInv.InventoryForSaving[20] + "/3";
         NumberOfItemsForCraft[55].text = savingInv.InventoryForSaving[2] + "/1";
         NumberOfItemsForCraft[56].text = savingInv.InventoryForSaving[3] + "/1";
     }
+
+
+    private void OnEnable()
+    {
+        EventManager.OnBase += TransportResourcesOnBase;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnBase -= TransportResourcesOnBase;
+    }
+    private void TransportResourcesOnBase()
+    {
+        InventorySystem.Add(referenceItem[17], player.IronOre);
+        savingInv.InventoryForSaving[17] += player.IronOre;
+        player.IronOre = 0;
+        InventorySystem.Add(referenceItem[18], player.CoperOre);
+        savingInv.InventoryForSaving[18] += player.CoperOre;
+        player.CoperOre = 0;
+        InventorySystem.Add(referenceItem[19], player.CoalOre);
+        savingInv.InventoryForSaving[19] += player.CoalOre;
+        player.CoalOre = 0;
+        InventorySystem.Add(referenceItem[20], player.AlienRemains);
+        savingInv.InventoryForSaving[20] += player.AlienRemains;
+        player.AlienRemains = 0;
+        InventorySystem.Add(referenceItem[21], player.TitaniumOre);
+        savingInv.InventoryForSaving[21] += player.TitaniumOre;
+        player.TitaniumOre = 0;
+        InventorySystem.Add(referenceItem[22], player.GoldOre);
+        savingInv.InventoryForSaving[22] += player.GoldOre;
+        player.GoldOre = 0;
+
+        for (var i = Inventory.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(Inventory.transform.GetChild(i).gameObject);
+
+        }
+        foreach (InventoryItem item in InventorySystem.inventory)
+        {            
+            if (item.stackSize != 0)
+            {
+                GameObject obj = Instantiate(SlotPrefab);
+                obj.transform.SetParent(Inventory.transform, false);
+                UIInventorySlot slot = obj.GetComponent<UIInventorySlot>();
+                slot.Set(item);                
+            }
+        }
+    }
+    
 }

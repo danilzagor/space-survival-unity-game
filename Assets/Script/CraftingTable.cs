@@ -31,5 +31,4 @@ public class CraftingTable : MonoBehaviour
     {
         player.PlayerHealth = player.MaxPlayerHealth;
     }
-
 }

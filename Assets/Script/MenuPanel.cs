@@ -11,6 +11,11 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject DeathPanel;
     [SerializeField] GameObject[] Joysticks;
+    private void Awake()
+    {
+        OpenCloseMenuPanel();
+        OpenCloseMenuPanel();
+    }
     public void Cheat()
     {
         player.GoldOre = 100;

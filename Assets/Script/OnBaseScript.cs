@@ -12,6 +12,7 @@ public class OnBaseScript : MonoBehaviour
         {
             currenbaseSprite.sprite = baseSprite[0];
             player.PlayerIsAtBase = true;
+            EventManager.TriggerOnBase();
         }
         
     }
