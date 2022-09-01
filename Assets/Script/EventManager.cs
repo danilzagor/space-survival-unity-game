@@ -7,6 +7,8 @@ public class EventManager : MonoBehaviour
     public delegate void OnBaseAction();
     public static event OnBaseAction OnBase;
 
+    public delegate void TakeDamageAction();
+    public static event TakeDamageAction TakeDamage;
 
     public static void TriggerOnBase()
     {
@@ -16,5 +18,9 @@ public class EventManager : MonoBehaviour
                 OnBase();
         }
     }
-
+    public static void PlayerTakeDamage()
+    {      
+            if (TakeDamage != null)
+                TakeDamage();       
+    }
 }

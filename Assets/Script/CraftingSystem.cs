@@ -24,7 +24,11 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private Text[] NumberOfItemsForCraft = new Text[13];
     private float DelayForCrafting;
     private float DelayForEquipment;
-
+    public static int LevelOfCraftingTable = 0;
+    public static int LevelOfEquipmentTable = 0;
+    public static int LevelOfBase=0;
+    [SerializeField] private GameObject[] CraftLvls;
+    [SerializeField] private GameObject[] BaseUpgradesLvls;
     private void Start()
     {
         savingInv.InventoryForSaving = new int[25];
@@ -595,16 +599,29 @@ public class CraftingSystem : MonoBehaviour
         {
             player.Medicine += 1;
         }
+        else if (Type == 8)
+        {
+            LevelOfCraftingTable++; 
+        }
+        else if (Type == 9)
+        {
+            LevelOfEquipmentTable++;
+        }
+        else if (Type == 10)
+        {
+            LevelOfBase++;
+        }
         CraftingProcess.SetActive(false);
+        InventorySaving();
     }
     private void FixedUpdate()
     {
-        if (LevelOfArmor == 1)
+        if (LevelOfArmor == 1 && LevelOfEquipmentTable >= 1)
         {
             Upgrades[0].SetActive(true);
             Upgrades[1].SetActive(false);
         }
-        else if (LevelOfArmor == 2)
+        else if (LevelOfArmor == 2 && LevelOfEquipmentTable>=2)
         {
             Upgrades[0].SetActive(false);
             Upgrades[1].SetActive(true);
@@ -613,12 +630,12 @@ public class CraftingSystem : MonoBehaviour
             Upgrades[0].SetActive(false);
             Upgrades[1].SetActive(false);
         }
-        if (player.MaxPlayerOxygen == 100)
+        if (player.MaxPlayerOxygen == 100 && LevelOfEquipmentTable >= 1)
         {
             Upgrades[2].SetActive(true);
             Upgrades[3].SetActive(false);
         }
-        else if (player.MaxPlayerOxygen == 125)
+        else if (player.MaxPlayerOxygen == 125 && LevelOfEquipmentTable >= 2)
         {
             Upgrades[2].SetActive(false);
             Upgrades[3].SetActive(true);
@@ -629,12 +646,12 @@ public class CraftingSystem : MonoBehaviour
             Upgrades[3].SetActive(false);
         }
         
-        if (LevelOfDrill == 1)
+        if (LevelOfDrill == 1 && LevelOfEquipmentTable >= 1)
         {
             Upgrades[4].SetActive(true);
             Upgrades[5].SetActive(false);
         }
-        else if (LevelOfDrill == 2)
+        else if (LevelOfDrill == 2 && LevelOfEquipmentTable >= 1)
         {
             Upgrades[4].SetActive(false);
             Upgrades[5].SetActive(true);
@@ -644,6 +661,51 @@ public class CraftingSystem : MonoBehaviour
             Upgrades[4].SetActive(false);
             Upgrades[5].SetActive(false);
         }
+
+        if (LevelOfCraftingTable >= 1)
+        {
+            CraftLvls[1].SetActive(true);
+        }else CraftLvls[1].SetActive(false);
+        if (LevelOfCraftingTable >= 2)
+        {
+            CraftLvls[2].SetActive(true);
+        }
+        else CraftLvls[2].SetActive(false);
+        if (LevelOfCraftingTable == 0)
+        {
+            BaseUpgradesLvls[0].SetActive(true);
+        }else
+        if (LevelOfCraftingTable == 1)
+        {
+            BaseUpgradesLvls[0].SetActive(false);
+            BaseUpgradesLvls[1].SetActive(true);
+        }
+        else if (LevelOfEquipmentTable == 1)
+        {
+            BaseUpgradesLvls[1].SetActive(false);
+            BaseUpgradesLvls[2].SetActive(true);
+        }
+        else if(LevelOfBase == 1)
+        {
+            BaseUpgradesLvls[2].SetActive(false);
+            BaseUpgradesLvls[3].SetActive(true);
+        }else if (LevelOfCraftingTable == 2)
+        {
+            BaseUpgradesLvls[3].SetActive(false);
+            BaseUpgradesLvls[4].SetActive(true);
+        }
+        else if (LevelOfEquipmentTable == 2)
+        {
+            BaseUpgradesLvls[4].SetActive(false);
+            BaseUpgradesLvls[5].SetActive(true);
+        }
+        else if (LevelOfBase == 2)
+        {
+            BaseUpgradesLvls[5].SetActive(false);
+            BaseUpgradesLvls[6].SetActive(true);
+        }
+        else BaseUpgradesLvls[6].SetActive(false);
+
 
         NumberOfItemsForCraft[0].text = savingInv.InventoryForSaving[17] + "/1";
         NumberOfItemsForCraft[1].text = savingInv.InventoryForSaving[18] + "/1";
@@ -704,6 +766,36 @@ public class CraftingSystem : MonoBehaviour
         NumberOfItemsForCraft[54].text = savingInv.InventoryForSaving[20] + "/3";
         NumberOfItemsForCraft[55].text = savingInv.InventoryForSaving[2] + "/1";
         NumberOfItemsForCraft[56].text = savingInv.InventoryForSaving[3] + "/1";
+
+        NumberOfItemsForCraft[57].text = savingInv.InventoryForSaving[6] + "/3";
+        NumberOfItemsForCraft[58].text = savingInv.InventoryForSaving[20] + "/5";
+        NumberOfItemsForCraft[59].text = savingInv.InventoryForSaving[4] + "/5";
+        NumberOfItemsForCraft[60].text = savingInv.InventoryForSaving[5] + "/10";
+
+        NumberOfItemsForCraft[61].text = savingInv.InventoryForSaving[6] + "/4";
+        NumberOfItemsForCraft[62].text = savingInv.InventoryForSaving[20] + "/5";
+        NumberOfItemsForCraft[63].text = savingInv.InventoryForSaving[8] + "/1";
+        NumberOfItemsForCraft[64].text = savingInv.InventoryForSaving[7] + "/1";
+
+        NumberOfItemsForCraft[65].text = savingInv.InventoryForSaving[6] + "/5";
+        NumberOfItemsForCraft[66].text = savingInv.InventoryForSaving[20] + "/8";
+        NumberOfItemsForCraft[67].text = savingInv.InventoryForSaving[8] + "/2";
+        NumberOfItemsForCraft[68].text = savingInv.InventoryForSaving[7] + "/2";
+
+        NumberOfItemsForCraft[69].text = savingInv.InventoryForSaving[8] + "/2";
+        NumberOfItemsForCraft[70].text = savingInv.InventoryForSaving[20] + "/10";
+        NumberOfItemsForCraft[71].text = savingInv.InventoryForSaving[2] + "/5";
+        NumberOfItemsForCraft[72].text = savingInv.InventoryForSaving[3] + "/5";
+
+        NumberOfItemsForCraft[73].text = savingInv.InventoryForSaving[16] + "/5";
+        NumberOfItemsForCraft[74].text = savingInv.InventoryForSaving[20] + "/10";
+        NumberOfItemsForCraft[75].text = savingInv.InventoryForSaving[14] + "/1";
+        NumberOfItemsForCraft[76].text = savingInv.InventoryForSaving[12] + "/5";
+
+        NumberOfItemsForCraft[77].text = savingInv.InventoryForSaving[11] + "/5";
+        NumberOfItemsForCraft[78].text = savingInv.InventoryForSaving[20] + "/15";
+        NumberOfItemsForCraft[79].text = savingInv.InventoryForSaving[15] + "/1";
+        NumberOfItemsForCraft[80].text = savingInv.InventoryForSaving[14] + "/1";
     }
 
 
@@ -751,6 +843,144 @@ public class CraftingSystem : MonoBehaviour
                 slot.Set(item);                
             }
         }
+        InventorySaving();
     }
-    
+
+
+    public void UpgradeCraftingTableLvl1()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[6], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[4], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[5], out InventoryItem value3))
+        {
+            if (value.stackSize >= 3 && value1.stackSize >= 5 && value2.stackSize >= 5 && value3.stackSize>=10)
+            {
+                InventorySystem.Remove(referenceItem[6], 3);
+                savingInv.InventoryForSaving[6] -= 3;
+                InventorySystem.Remove(referenceItem[20], 5);
+                savingInv.InventoryForSaving[20] -= 5;
+                InventorySystem.Remove(referenceItem[4], 5);
+                savingInv.InventoryForSaving[4] -= 5;
+                InventorySystem.Remove(referenceItem[5], 10);
+                savingInv.InventoryForSaving[5] -= 10;
+                StartCoroutine(EquipmentCoroutine(60f, 8));
+            }
+
+        }
+    }
+    public void UpgradeEquipmentTableLvl1()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[6], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[7], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value3))
+        {
+            if (value.stackSize >= 4 && value1.stackSize >= 5 && value2.stackSize >= 1 && value3.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[6], 4);
+                savingInv.InventoryForSaving[6] -= 4;
+                InventorySystem.Remove(referenceItem[20], 5);
+                savingInv.InventoryForSaving[20] -= 5;
+                InventorySystem.Remove(referenceItem[7], 1);
+                savingInv.InventoryForSaving[7] -= 1;
+                InventorySystem.Remove(referenceItem[8], 1);
+                savingInv.InventoryForSaving[8] -= 1;
+                StartCoroutine(EquipmentCoroutine(60f, 9));
+            }
+
+        }
+    }
+    public void UpgradeBaseLvl1()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[6], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[7], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value3))
+        {
+            if (value.stackSize >= 5 && value1.stackSize >= 8 && value2.stackSize >= 2 && value3.stackSize >= 2)
+            {
+                InventorySystem.Remove(referenceItem[6], 5);
+                savingInv.InventoryForSaving[6] -= 5;
+                InventorySystem.Remove(referenceItem[20], 8);
+                savingInv.InventoryForSaving[20] -= 8;
+                InventorySystem.Remove(referenceItem[7], 2);
+                savingInv.InventoryForSaving[7] -= 2;
+                InventorySystem.Remove(referenceItem[8], 2);
+                savingInv.InventoryForSaving[8] -= 2;
+                StartCoroutine(EquipmentCoroutine(60f, 10));
+            }
+
+        }
+    }
+
+
+
+
+    public void UpgradeCraftingTableLvl2()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[8], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[2], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[3], out InventoryItem value3))
+        {
+            if (value.stackSize >= 2 && value1.stackSize >= 10 && value2.stackSize >= 5 && value3.stackSize >= 5)
+            {
+                InventorySystem.Remove(referenceItem[8], 2);
+                savingInv.InventoryForSaving[8] -= 2;
+                InventorySystem.Remove(referenceItem[20], 10);
+                savingInv.InventoryForSaving[20] -= 10;
+                InventorySystem.Remove(referenceItem[2], 5);
+                savingInv.InventoryForSaving[2] -= 5;
+                InventorySystem.Remove(referenceItem[3], 5);
+                savingInv.InventoryForSaving[3] -= 5;
+                StartCoroutine(EquipmentCoroutine(120f, 8));
+            }
+
+        }
+    }
+    public void UpgradeEquipmentTableLvl2()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[16], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[14], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[12], out InventoryItem value3))
+        {
+            if (value.stackSize >= 5 && value1.stackSize >= 10 && value2.stackSize >= 1 && value3.stackSize >= 5)
+            {
+                InventorySystem.Remove(referenceItem[16], 5);
+                savingInv.InventoryForSaving[16] -= 5;
+                InventorySystem.Remove(referenceItem[20], 10);
+                savingInv.InventoryForSaving[20] -= 10;
+                InventorySystem.Remove(referenceItem[14], 1);
+                savingInv.InventoryForSaving[14] -= 1;
+                InventorySystem.Remove(referenceItem[12], 5);
+                savingInv.InventoryForSaving[12] -= 5;
+                StartCoroutine(EquipmentCoroutine(120f, 9));
+            }
+
+        }
+    }
+    public void UpgradeBaseLvl2()
+    {
+        if (InventorySystem.m_itemDictionary.TryGetValue(referenceItem[11], out InventoryItem value)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[20], out InventoryItem value1)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[14], out InventoryItem value2)
+            && InventorySystem.m_itemDictionary.TryGetValue(referenceItem[15], out InventoryItem value3))
+        {
+            if (value.stackSize >= 5 && value1.stackSize >= 15 && value2.stackSize >= 1 && value3.stackSize >= 1)
+            {
+                InventorySystem.Remove(referenceItem[11], 5);
+                savingInv.InventoryForSaving[11] -= 5;
+                InventorySystem.Remove(referenceItem[20], 15);
+                savingInv.InventoryForSaving[20] -= 15;
+                InventorySystem.Remove(referenceItem[14], 1);
+                savingInv.InventoryForSaving[14] -= 1;
+                InventorySystem.Remove(referenceItem[15], 1);
+                savingInv.InventoryForSaving[15] -= 1;
+                StartCoroutine(EquipmentCoroutine(120f, 10));
+            }
+
+        }
+    }
 }

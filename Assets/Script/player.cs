@@ -58,6 +58,7 @@ public class player : MonoBehaviour
     bool DrillStartSound;
     [SerializeField] private AudioSource JetpackSoundSource;
     [SerializeField] private AudioClip[] JetpackSound;
+    [SerializeField] private AudioClip[] PlayerDamageSound;
     bool JetpackStartSound;
     bool reloaded
     {
@@ -293,6 +294,24 @@ public class player : MonoBehaviour
         //if (PlayerHealth < 100) PlayerHealth++;
         CancelInvoke("OxygenAtBase");
     }
+    private void OnEnable()
+    {
+        EventManager.TakeDamage += DamageSound;
+    }
+    private void OnDisable()
+    {
+        EventManager.TakeDamage -= DamageSound;
+    }
+    
+    private void DamageSound()
+    {
+        if (PlayerSound[0].isPlaying == false)
+        {
+            PlayerSound[0].clip = PlayerDamageSound[UnityEngine.Random.Range(0, 4)];
+            PlayerSound[0].Play();
+        }
+        
+    }
     void OxygenAtSpace()
     {
         if (PlayerOxygen > 0)
@@ -303,7 +322,7 @@ public class player : MonoBehaviour
         if (PlayerOxygen <= 0)
         {
             PlayerHealth -= 1;
-            if (PlayerHealth == 100 || PlayerHealth == 75 || PlayerHealth == 50 || PlayerHealth == 25 || PlayerHealth == 1) PlayerSound[0].Play();
+            if (PlayerHealth == 100 || PlayerHealth == 75 || PlayerHealth == 50 || PlayerHealth == 25 || PlayerHealth == 5) PlayerSound[0].Play();
         }
         
         CancelInvoke("OxygenAtSpace");

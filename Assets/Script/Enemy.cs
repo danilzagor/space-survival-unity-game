@@ -80,6 +80,7 @@ public abstract class Enemy : MonoBehaviour
                 Invoke("IsAttack", 1f);
                 rb.MovePosition((Vector2)transform.position - (2 * moveSpeed * Time.deltaTime * direction));
                 player.PlayerHealth -=  EnemyDamage-(int)(EnemyDamage*(CraftingSystem.LevelOfArmor*0.1));
+                EventManager.PlayerTakeDamage();
             }           
         }
     }

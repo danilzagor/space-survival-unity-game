@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SaveLoadSystem : MonoBehaviour
 {
+    [SerializeField] private GameObject[] ShuttleLvls;
     void Awake()
     {
         if(Menu.IsNewGame==0)
@@ -18,6 +19,9 @@ public class SaveLoadSystem : MonoBehaviour
             player.PlayerOxygen = PlayerPrefs.GetInt("PlayerOxygen");
             player.MaxPlayerOxygen = PlayerPrefs.GetInt("MaxPlayerOxygen");
             player.MaxPlayerHealth = PlayerPrefs.GetInt("MaxPlayerHealth");
+            CraftingSystem.LevelOfBase = PlayerPrefs.GetInt("LevelOfBase");
+            CraftingSystem.LevelOfCraftingTable = PlayerPrefs.GetInt("LevelOfCraftingTable");
+            CraftingSystem.LevelOfEquipmentTable = PlayerPrefs.GetInt("LevelOfEquipmentTable");
             player.MiningSpeed = PlayerPrefs.GetFloat("MiningSpeed");
             CraftingSystem.LevelOfDrill = PlayerPrefs.GetInt("LevelOfDrill");
             if (CraftingSystem.LevelOfDrill == 0)
@@ -56,8 +60,19 @@ public class SaveLoadSystem : MonoBehaviour
             player.GoldOre = 0;
             player.AlienRemains = 0;
             player.Medicine = 0;
+            CraftingSystem.LevelOfBase = 0;
+            CraftingSystem.LevelOfCraftingTable = 0;
+            CraftingSystem.LevelOfEquipmentTable = 0;
         }
-        
+        if (CraftingSystem.LevelOfBase == 0)
+        {
+            ShuttleLvls[0].SetActive(true);
+            ShuttleLvls[1].SetActive(false);
+        }else if (CraftingSystem.LevelOfBase == 0)
+        {
+            ShuttleLvls[0].SetActive(false);
+            ShuttleLvls[1].SetActive(true);
+        }
     }
    
     void Update()
@@ -72,5 +87,8 @@ public class SaveLoadSystem : MonoBehaviour
         PlayerPrefs.SetInt("PlayerAmmo", player.PlayerAmmo);
         PlayerPrefs.SetInt("AlienRemains", player.AlienRemains);
         PlayerPrefs.SetInt("Medicine", player.Medicine);
+        PlayerPrefs.SetInt("LevelOfBase", CraftingSystem.LevelOfBase);
+        PlayerPrefs.SetInt("LevelOfCraftingTable", CraftingSystem.LevelOfCraftingTable);
+        PlayerPrefs.SetInt("LevelOfEquipmentTable", CraftingSystem.LevelOfEquipmentTable);
     }
 }

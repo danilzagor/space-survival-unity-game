@@ -17,6 +17,7 @@ public class EyeGuyLaser : MonoBehaviour
             {
                 player.PlayerHealth--;
                 k = 0;
+                EventManager.PlayerTakeDamage();
             }
             else k++;
 

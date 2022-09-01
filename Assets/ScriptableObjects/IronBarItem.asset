@@ -15,4 +15,3 @@ MonoBehaviour:
   id: IronBarItem
   displayName: Iron bar
   icon: {fileID: 21300000, guid: 23853cadba73d134ca5b710f374f548f, type: 3}
-  num: 0

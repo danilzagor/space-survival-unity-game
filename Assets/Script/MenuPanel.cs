@@ -8,6 +8,7 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] GameObject SettingsPanel;
     bool PanelIsOpen = false;
     [SerializeField] AudioSource[] audioSources;
+    [SerializeField] AudioClip PlayerDeathSound;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject DeathPanel;
     [SerializeField] GameObject[] Joysticks;
@@ -111,15 +112,19 @@ public class MenuPanel : MonoBehaviour
         Player.GetComponent<Rigidbody2D>().constraints= RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         Player.GetComponent<Rigidbody2D>().constraints = 0;
         Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-        
+        audioSources[1].Stop();
+
+
     }
    
     private void Update()
     {
-        if (player.PlayerHealth <= 0)
+        if (player.PlayerHealth <= 0 && DeathPanel.activeSelf == false)
         {
+            player.PlayerGameObject.transform.position = new Vector2(0, 0);
             DeathPanel.SetActive(true);
-            
+            audioSources[1].clip = PlayerDeathSound;
+            audioSources[1].Play();
         }
     }
     public void UseMedicine()
