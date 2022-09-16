@@ -17,7 +17,11 @@ public class MimicEnemy : Enemy
         if ((player.PlayerGameObject.position - transform.position).magnitude > distanceToAttack && 
             (player.PlayerGameObject.position - transform.position).magnitude <= distanceToAttack+3)
         {
-            Invoke("SilentSound", 6f);
+            if (IsInvoking("SilentSound") == false)
+            {
+                Invoke("SilentSound", 6f);
+            }
+            
         }
     }
     private void SilentSound()

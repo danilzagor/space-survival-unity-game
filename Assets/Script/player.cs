@@ -307,7 +307,7 @@ public class player : MonoBehaviour
     {
         if (PlayerSound[0].isPlaying == false)
         {
-            PlayerSound[0].clip = PlayerDamageSound[UnityEngine.Random.Range(0, 4)];
+            PlayerSound[0].clip = PlayerDamageSound[UnityEngine.Random.Range(0, 3)];
             PlayerSound[0].Play();
         }
         
